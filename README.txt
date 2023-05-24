@@ -9,3 +9,7 @@ UFO - Batuhan13
 Backgrounds:
 
 Deep Space Skybox Pack - Sean Duffy (Unity Asset Store)
+
+Consulted Bibliography:
+
+https://learn.unity.com/course/dots-best-practices
