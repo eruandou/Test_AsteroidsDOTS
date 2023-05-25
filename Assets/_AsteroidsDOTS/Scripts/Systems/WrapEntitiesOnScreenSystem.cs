@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace _AsteroidsDOTS.Scripts.Systems
 {
-    [UpdateInGroup(typeof(SimulationSystemGroup)), UpdateAfter(typeof(PlayerMovementSystem))]
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
     public class WrapEntitiesOnScreenSystem : SystemBase
     {
         protected override void OnUpdate()

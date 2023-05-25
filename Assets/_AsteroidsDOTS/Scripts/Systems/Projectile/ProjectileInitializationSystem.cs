@@ -27,8 +27,6 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
             Entities.ForEach((Entity p_entity, ref ProjectileData p_projectileData,
                     in UninitializedProjectileTag p_uninitializedProjectile) =>
                 {
-                    p_projectileData.Lifetime = p_projectileData.MaxLifetime;
-
                     var l_projectileVelocity = new PhysicsVelocity()
                         { Linear = p_uninitializedProjectile.IntendedForwards * p_projectileData.Speed };
                     SetComponent(p_entity, l_projectileVelocity);

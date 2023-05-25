@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Projectile
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup)), UpdateBefore(typeof(LocalToParentSystem))]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class ProjectileSpawnSystem : SystemBase
     {
         private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
