@@ -198,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 9105972151100958703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.77, y: 0, z: 1.16}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1617383996124101649}
   m_Father: {fileID: 0}
@@ -535,8 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384d8b882de410f8e3a96d8142d2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootRate: 0.5
-  ProjectilePrefab: {fileID: 0}
-  ProjectileSpawnForwardOffset: 0.5
+  ShootRate: 2
+  ProjectilePrefab: {fileID: 1070880271403894716, guid: a31fbd9c3ffac514393b5f0500154c9c, type: 3}
+  ProjectileSpawnForwardOffset: 2
   ShouldShootProjectile: 0
   LastShootingTime: 0
