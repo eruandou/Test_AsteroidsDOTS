@@ -17,15 +17,16 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
 
             //Query for the player input
-            float l_currentTime = UnityEngine.Time.time;
+            float l_currentTime = (float)Time.ElapsedTime;
             Entities.ForEach((ref PlayerMovementData p_playerMovementData, ref PlayerShootingData p_playerShootingData,
                 in Rotation p_playerRotation,
                 in Translation p_playerTranslation, in InputConfigurationData p_inputConfiguration) =>
             {
-                float l_horizontal = 0;
                 float l_vertical = 0;
                 l_vertical += Input.GetKey(p_inputConfiguration.ThrustForwardsKey) ? 1 : 0;
                 l_vertical -= Input.GetKey(p_inputConfiguration.ThrustBackwardsKey) ? 1 : 0;
+
+                float l_horizontal = 0;
                 l_horizontal += Input.GetKey(p_inputConfiguration.RotateRightKey) ? 1 : 0;
                 l_horizontal -= Input.GetKey(p_inputConfiguration.RotateLeftKey) ? 1 : 0;
 
@@ -35,7 +36,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
                 p_playerMovementData.ThrustImpulse = l_vertical * p_playerMovementData.ThrustAccelerationRate;
                 p_playerMovementData.TorqueForce = l_horizontal * p_playerMovementData.RotationAcceleration;
 
-                if (l_shootPetition && p_playerShootingData.CanShoot)
+                if (l_shootPetition && p_playerShootingData.NextShootingTime <= l_currentTime)
                 {
                     p_playerShootingData.LastShootingTime = l_currentTime;
                     p_playerShootingData.ShouldShootProjectile = true;

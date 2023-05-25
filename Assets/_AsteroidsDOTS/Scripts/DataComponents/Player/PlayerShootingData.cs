@@ -10,9 +10,8 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         public Entity ProjectilePrefab;
         public float ProjectileSpawnForwardOffset;
         [HideInInspector] public bool ShouldShootProjectile;
-
+        private float MinimumShootTime => 1f / ShootRate;
         [HideInInspector] public float LastShootingTime;
-
-        [HideInInspector] public bool CanShoot => LastShootingTime <= Time.time;
+        public float NextShootingTime => LastShootingTime + MinimumShootTime;
     }
 }
