@@ -2,9 +2,10 @@
 
 Credits
 
-Spaceship model - Jefferson Frenay
-Asteroid - exabyte
-UFO - Batuhan13
+Spaceship model - Jefferson Frenay (Sketchfab)
+Asteroid1 - exabyte (Sketchfab)
+Asteroid2 - kayra23 (Sketchfab)
+UFO - Batuhan13 (Sketchfab)
 
 Backgrounds:
 

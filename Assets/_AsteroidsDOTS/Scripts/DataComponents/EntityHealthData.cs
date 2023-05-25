@@ -6,10 +6,17 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
     [GenerateAuthoringComponent]
     public struct EntityHealthData : IComponentData
     {
-        [Header("Health")] public float MaxHealth;
         public Entity DeadParticlesPrefab;
-        public float CurrentHealth;
-        [HideInInspector] public bool IsInvincible;
-        
+        public float Health;
+        public float InvincibilityTime;
+        [HideInInspector] public float CurrentInvincibilityTime;
+        [HideInInspector] public bool IsInvincible => CurrentInvincibilityTime <= 0;
+
+        public bool ShouldDie => Health <= 0;
+
+        /// <summary>
+        /// Used to queue pending health modifications to this component
+        /// </summary>
+        [HideInInspector] public float PendingHealthModification;
     }
 }
