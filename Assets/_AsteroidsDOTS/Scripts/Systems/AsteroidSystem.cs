@@ -12,24 +12,22 @@ namespace _AsteroidsDOTS.Scripts.Systems
     {
         private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
 
-        private Entity m_asteroidSpawnDataEntity;
+        private GameStateData m_gameStateData;
 
 
         protected override void OnCreate()
         {
             m_endSimulationBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            RequireSingletonForUpdate<GameStateData>();
+        }
+
+        protected override void OnStartRunning()
+        {
+            m_gameStateData = GetSingleton<GameStateData>();
         }
 
         protected override void OnUpdate()
         {
-            if (m_asteroidSpawnDataEntity == Entity.Null)
-            {
-                m_asteroidSpawnDataEntity = GetSingletonEntity<InitialAsteroidSpawnData>();
-            }
-
-            if (!EntityManager.Exists(m_asteroidSpawnDataEntity))
-                return;
-
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
 
 
@@ -46,27 +44,18 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
                         var l_newAsteroidTranslation = new Translation() { Value = p_localToWorld.Position };
                         l_ecb.SetComponent(l_asteroidEntity, l_newAsteroidTranslation);
-
-                        var l_randomMovingDirection = p_randomData.Random.NextFloat3();
-                        l_randomMovingDirection.y = 0;
-                        l_randomMovingDirection = math.normalize(l_randomMovingDirection);
-                        var l_uninitializedAsteroidTag = new UninitializedAsteroid()
+                        float2 l_randomDirVector = p_randomData.Random.NextFloat2Direction();
+                        float3 l_randomMovingDirection = new float3(l_randomDirVector.x, 0, l_randomDirVector.y);
+                        var l_uninitializedAsteroidTag = new UninitializedAsteroid
                             { IntendedDirection = l_randomMovingDirection };
                         l_ecb.AddComponent<UninitializedAsteroid>(l_asteroidEntity);
                         l_ecb.SetComponent(l_asteroidEntity, l_uninitializedAsteroidTag);
                     }
 
-                    if (EntityManager.Exists(m_asteroidSpawnDataEntity))
-                    {
-                        int l_asteroidBalance = 0;
-                        l_asteroidBalance--;
-                        l_asteroidBalance += p_asteroidData.PiecesBrokenIntoOnDestroy;
-                        InitialAsteroidSpawnData l_spawnAsteroidData =
-                            GetComponent<InitialAsteroidSpawnData>(m_asteroidSpawnDataEntity);
-                        l_spawnAsteroidData.TotalSpawnedAsteroids += l_asteroidBalance;
-                        l_ecb.SetComponent(m_asteroidSpawnDataEntity, l_spawnAsteroidData);
-                    }
-
+                    int l_asteroidBalance = 0;
+                    l_asteroidBalance--;
+                    l_asteroidBalance += p_asteroidData.PiecesBrokenIntoOnDestroy;
+                    m_gameStateData.TotalSpawnedAsteroids += l_asteroidBalance;
                     l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
                 }
             }).WithoutBurst().Run();

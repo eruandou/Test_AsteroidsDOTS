@@ -37,9 +37,10 @@ namespace _AsteroidsDOTS.Scripts.Systems
             var l_verticalLimit = GameplayStaticGlobals.VerticalLimits;
 
 
-            Entities.ForEach((ref IndividualRandomData p_randomData, ref InitialAsteroidSpawnData p_spawnData) =>
+            Entities.ForEach((ref IndividualRandomData p_randomData, ref GameStateData p_gameStateData,
+                in InitialAsteroidSpawnData p_spawnData) =>
             {
-                if (p_spawnData.TotalSpawnedAsteroids > 0)
+                if (p_gameStateData.TotalSpawnedAsteroids > 0)
                     return;
                 //Note: If not used, the first integer is predictable, fsr.
                 p_randomData.Random.NextInt();
@@ -99,7 +100,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     l_ecb.SetComponent(l_newAsteroidEntity, l_translation);
                 }
 
-                p_spawnData.TotalSpawnedAsteroids += l_randomAmount;
+                p_gameStateData.TotalSpawnedAsteroids += l_randomAmount;
             }).Schedule();
 
 

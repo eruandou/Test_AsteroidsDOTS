@@ -18,11 +18,11 @@ namespace _AsteroidsDOTS.Scripts.Systems
         {
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer().AsParallelWriter();
             Entities.WithAll<DeadPointsEntityTag>()
-                .ForEach((Entity l_entity, int entityInQueryIndex, in PointAwardData p_pointAwardData) =>
+                .ForEach((Entity p_entity, int entityInQueryIndex, in PointAwardData p_pointAwardData) =>
                 {
                     //Add points here.
 
-                    l_ecb.DestroyEntity(entityInQueryIndex, l_entity);
+                    l_ecb.DestroyEntity(entityInQueryIndex, p_entity);
                 })
                 .ScheduleParallel();
 

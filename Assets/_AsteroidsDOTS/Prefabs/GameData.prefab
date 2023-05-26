@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5518329714307713988}
   - component: {fileID: 5518329714307713987}
   - component: {fileID: 2510371558322477310}
+  - component: {fileID: 2394196099489791509}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -56,7 +57,6 @@ MonoBehaviour:
     x: -25
     y: 25
   BigAsteroidPrefab: {fileID: 4614755087043921378, guid: a84f65462afe31945aba38479a061fa9, type: 3}
-  TotalSpawnedAsteroids: 0
 --- !u!114 &5518329714307713988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,8 +97,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnEnemyTime:
-    x: 3
-    y: 10
+    x: 15
+    y: 40
   NextEnemySpawnTime: 0
   SmallUfo: {fileID: 5313241694432662894, guid: a0819761190f6f747b40ea787cddd8a3, type: 3}
   BigUfo: {fileID: 5313241694432662894, guid: 5511d62144f36e74184f20150fe41f65, type: 3}
+--- !u!114 &2394196099489791509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37624ce9bf1847a8974ac514decf9665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnedUFOs: 0
+  TotalSpawnedAsteroids: 0

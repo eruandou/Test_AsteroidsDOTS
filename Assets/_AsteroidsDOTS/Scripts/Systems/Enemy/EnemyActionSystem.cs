@@ -20,7 +20,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
         protected override void OnStartRunning()
         {
-            var l_playerSingleton = GetSingletonEntity<PlayerInputSystem>();
+            var l_playerSingleton = GetSingletonEntity<InputConfigurationData>();
             m_playerLocalToWorld = EntityManager.GetComponentData<LocalToWorld>(l_playerSingleton);
         }
 

@@ -13,7 +13,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents.Asteroids
         public Entity BigAsteroidPrefab;
 
         //We need to separate game data from authored data
-        [ReadOnlyInspector] public int TotalSpawnedAsteroids;
+    
 
         public float MedianExcludedXLocation => (ExcludedMinMaxXLocations.x + ExcludedMinMaxXLocations.y) / 2;
         public float MedianExcludedZLocation => (ExcludedMinMaxZLocations.x + ExcludedMinMaxZLocations.y) / 2;
