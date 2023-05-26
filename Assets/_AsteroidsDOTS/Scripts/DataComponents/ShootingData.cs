@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _AsteroidsDOTS.Scripts.DataComponents
 {
     [GenerateAuthoringComponent]
-    public struct PlayerShootingData : IComponentData
+    public struct ShootingData : IComponentData
     {
         [Header("Shooting info")] public float ShootRate;
         public Entity ProjectilePrefab;
