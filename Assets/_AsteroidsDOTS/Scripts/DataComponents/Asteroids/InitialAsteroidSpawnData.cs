@@ -1,4 +1,3 @@
-using System;
 using _AsteroidsDOTS.Scripts.Attributes;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -13,6 +12,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents.Asteroids
         public float2 ExcludedMinMaxZLocations;
         public Entity BigAsteroidPrefab;
 
+        //We need to separate game data from authored data
         [ReadOnlyInspector] public int TotalSpawnedAsteroids;
 
         public float MedianExcludedXLocation => (ExcludedMinMaxXLocations.x + ExcludedMinMaxXLocations.y) / 2;

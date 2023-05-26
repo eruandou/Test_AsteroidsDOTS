@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eec3b446b0a2fc44a44f4f31e955368, type: 3}
+  m_Name: RecentFilesBrowserData
+  m_EditorClassIdentifier: 
+  favoriteSelections: []
+  previousSelections:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 5313241694432662894, guid: a0819761190f6f747b40ea787cddd8a3, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 5313241694432662894, guid: 5511d62144f36e74184f20150fe41f65, type: 3}
+  maxItems: 20
+  scrollPos: {x: 0, y: 0}
