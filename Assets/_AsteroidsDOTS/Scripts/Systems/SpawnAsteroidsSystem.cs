@@ -16,7 +16,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
         protected override void OnCreate()
         {
-            m_endInitializationBuffer = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
+            m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
         }
 
         protected override void OnStartRunning()
@@ -41,6 +41,8 @@ namespace _AsteroidsDOTS.Scripts.Systems
             {
                 if (p_spawnData.TotalSpawnedAsteroids > 0)
                     return;
+                //Note: If not used, the first integer is predictable, fsr.
+                p_randomData.Random.NextInt();
 
                 var l_randomAmount = p_randomData.Random.NextInt(p_spawnData.MinMaxAmountOfInitialAsteroids.x,
                     p_spawnData.MinMaxAmountOfInitialAsteroids.y);
@@ -95,9 +97,6 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     var l_spawnLocation = new float3(l_randomNewPositionX, 0, l_randomPositionZ);
                     var l_translation = new Translation() { Value = l_spawnLocation };
                     l_ecb.SetComponent(l_newAsteroidEntity, l_translation);
-
-                    // var l_rotation = new Rotation() { Value = p_randomData.Random.NextQuaternionRotation() };
-                    // l_ecb.SetComponent(l_newAsteroidEntity, l_rotation);
                 }
 
                 p_spawnData.TotalSpawnedAsteroids += l_randomAmount;

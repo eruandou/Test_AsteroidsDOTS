@@ -13,7 +13,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
 
         protected override void OnCreate()
         {
-            m_endSimulationBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            m_endSimulationBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()
@@ -24,7 +24,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
             }
 
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
-            Entities.ForEach((ref PlayerShootingData p_playerShootingData, in LocalToWorld p_playerLocalToWorld,
+            Entities.ForEach((ref ShootingData p_playerShootingData, in LocalToWorld p_playerLocalToWorld,
                     in Rotation p_playerRotation) =>
                 {
                     if (!p_playerShootingData.ShouldShootProjectile) return;

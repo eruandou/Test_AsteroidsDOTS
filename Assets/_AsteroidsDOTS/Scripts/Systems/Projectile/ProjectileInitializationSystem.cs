@@ -13,7 +13,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
 
         protected override void OnCreate()
         {
-            m_endSimulationBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            m_endSimulationBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()

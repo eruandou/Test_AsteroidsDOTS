@@ -3,14 +3,14 @@ using Unity.Entities;
 
 namespace _AsteroidsDOTS.Scripts.Systems
 {
-    [UpdateInGroup(typeof(SimulationSystemGroup), OrderLast = true)]
+    [UpdateInGroup(typeof(SimulationSystemGroup), OrderLast = true), UpdateAfter(typeof(PointsSystem))]
     public class TimedEntityDestroySystem : SystemBase
     {
         private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
 
         protected override void OnCreate()
         {
-            m_endSimulationBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+            m_endSimulationBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()

@@ -1,7 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.Globals;
 using Unity.Entities;
-using Unity.Transforms;
 using UnityEngine;
 
 namespace _AsteroidsDOTS.Scripts.Systems
@@ -19,7 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
             //Query for the player input
             float l_currentTime = (float)Time.ElapsedTime;
 
-            Entities.ForEach((ref PlayerMovementData p_playerMovementData, ref PlayerShootingData p_playerShootingData,
+            Entities.ForEach((ref PlayerMovementData p_playerMovementData, ref ShootingData p_playerShootingData,
                 in InputConfigurationData p_inputConfiguration) =>
             {
                 float l_vertical = 0;
