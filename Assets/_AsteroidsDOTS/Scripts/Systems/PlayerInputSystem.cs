@@ -18,9 +18,9 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
             //Query for the player input
             float l_currentTime = (float)Time.ElapsedTime;
+
             Entities.ForEach((ref PlayerMovementData p_playerMovementData, ref PlayerShootingData p_playerShootingData,
-                in Rotation p_playerRotation,
-                in Translation p_playerTranslation, in InputConfigurationData p_inputConfiguration) =>
+                in InputConfigurationData p_inputConfiguration) =>
             {
                 float l_vertical = 0;
                 l_vertical += Input.GetKey(p_inputConfiguration.ThrustForwardsKey) ? 1 : 0;

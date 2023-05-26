@@ -502,10 +502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b3ebb674e1a42a38e7e3b071005672b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
-  DeadParticlesPrefab: {fileID: 0}
-  CurrentHealth: 5
-  IsInvincible: 0
+  DeadParticlesPrefab: {fileID: 6611014458208555736, guid: 98ee34999994a754f9f3bfdcd2936dac, type: 3}
+  Health: 5
+  InvincibilityTime: 1.5
+  CurrentInvincibilityTime: 0
+  PendingHealthModification: 0
 --- !u!114 &8048102454698214412
 MonoBehaviour:
   m_ObjectHideFlags: 0

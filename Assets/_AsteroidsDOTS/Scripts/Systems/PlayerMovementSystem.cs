@@ -15,8 +15,8 @@ namespace _AsteroidsDOTS.Scripts.Systems
                 return;
 
             float l_deltaTime = Time.DeltaTime;
-            float2 verticalEdges = GameplayGlobals.VerticalLimits;
-            float2 horizontalEdges = GameplayGlobals.HorizontalLimits;
+            float2 verticalEdges = GameplayStaticGlobals.VerticalLimits;
+            float2 horizontalEdges = GameplayStaticGlobals.HorizontalLimits;
 
             Entities.ForEach((ref PhysicsVelocity p_physicsVelocity, ref Translation p_translation,
                 ref Rotation p_rotation,

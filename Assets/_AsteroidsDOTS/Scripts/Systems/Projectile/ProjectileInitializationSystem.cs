@@ -6,7 +6,7 @@ using Unity.Physics;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Projectile
 {
-    [UpdateInGroup(typeof(SimulationSystemGroup)), UpdateAfter(typeof(ProjectileSpawnSystem))]
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
     public class ProjectileInitializationSystem : SystemBase
     {
         private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
