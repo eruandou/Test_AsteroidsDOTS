@@ -33,7 +33,8 @@ namespace _AsteroidsDOTS.Scripts.Systems
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
 
 
-            Entities.ForEach((ref IndividualRandomData p_randomData, in EntityHealthData p_asteroidHealth,
+            Entities.ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
+                in EntityHealthData p_asteroidHealth,
                 in AsteroidData p_asteroidData,
                 in LocalToWorld p_localToWorld) =>
             {
@@ -45,11 +46,6 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
                         var l_newAsteroidTranslation = new Translation() { Value = p_localToWorld.Position };
                         l_ecb.SetComponent(l_asteroidEntity, l_newAsteroidTranslation);
-
-
-                        // var l_rotation = p_randomData.Random.NextQuaternionRotation();
-                        // var l_newAsteroidRotation = new Rotation() { Value = l_rotation };
-                        // l_ecb.SetComponent(l_asteroidEntity, l_newAsteroidRotation);
 
                         var l_randomMovingDirection = p_randomData.Random.NextFloat3();
                         l_randomMovingDirection.y = 0;
@@ -71,7 +67,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
                         l_ecb.SetComponent(m_asteroidSpawnDataEntity, l_spawnAsteroidData);
                     }
 
-                    //TODO: Add points
+                    l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
                 }
             }).WithoutBurst().Run();
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
