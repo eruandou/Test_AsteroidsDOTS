@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5518329714307713991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5518329714307713990}
+  - component: {fileID: 5518329714307713989}
+  - component: {fileID: 5518329714307713988}
+  - component: {fileID: 5518329714307713987}
+  - component: {fileID: 2510371558322477310}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5518329714307713990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5518329714307713989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865b62984d974cf7b38c052cc3fcb5d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxAmountOfInitialAsteroids:
+    x: 3
+    y: 6
+  ExcludedMinMaxXLocations:
+    x: -22
+    y: 22
+  ExcludedMinMaxZLocations:
+    x: -25
+    y: 25
+  BigAsteroidPrefab: {fileID: 4614755087043921378, guid: a84f65462afe31945aba38479a061fa9, type: 3}
+  TotalSpawnedAsteroids: 0
+--- !u!114 &5518329714307713988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
+--- !u!114 &5518329714307713987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a444432f29b447c6bb01b38cee112aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Random:
+    state: 0
+--- !u!114 &2510371558322477310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518329714307713991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4527dde1459b453fa155529b5b012738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnEnemyTime:
+    x: 3
+    y: 10
+  NextEnemySpawnTime: 0
+  SmallUfo: {fileID: 5313241694432662894, guid: a0819761190f6f747b40ea787cddd8a3, type: 3}
+  BigUfo: {fileID: 5313241694432662894, guid: 5511d62144f36e74184f20150fe41f65, type: 3}
