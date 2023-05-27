@@ -23,16 +23,16 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
                 return;
             }
 
-            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
-            Entities.ForEach((Entity p_entity, ref ProjectileData p_projectileData,
+            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer().AsParallelWriter();
+            Entities.ForEach((Entity p_entity, int entityInQueryIndex, ref ProjectileData p_projectileData,
                     in UninitializedProjectileTag p_uninitializedProjectile) =>
                 {
                     var l_projectileVelocity = new PhysicsVelocity()
                         { Linear = p_uninitializedProjectile.IntendedForwards * p_projectileData.Speed };
-                    SetComponent(p_entity, l_projectileVelocity);
-                    l_ecb.RemoveComponent<UninitializedProjectileTag>(p_entity);
+                    l_ecb.SetComponent(entityInQueryIndex, p_entity, l_projectileVelocity);
+                    l_ecb.RemoveComponent<UninitializedProjectileTag>(entityInQueryIndex, p_entity);
                 }
-            ).Schedule();
+            ).ScheduleParallel();
 
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }

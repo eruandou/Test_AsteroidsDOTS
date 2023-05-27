@@ -27,6 +27,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
         protected override void OnUpdate()
         {
+            //TODO: Should be transformed into JobStruct to avoid doubling up code
+            
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
             Entities.WithAll<DumbUfoTag>().ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
                 ref ShootingData p_enemyShootingData, in LocalToWorld p_enemyLocalToWorld) =>
