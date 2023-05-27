@@ -8,7 +8,6 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
     public class EnemyBehaviourSystem : SystemBase
     {
         private EndInitializationEntityCommandBufferSystem m_endSimulationBuffer;
-        private GameStateData m_gameStateData;
         private Entity m_gameStateEntity;
 
         protected override void OnCreate()
@@ -18,7 +17,6 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
         protected override void OnStartRunning()
         {
-            m_gameStateData = GetSingleton<GameStateData>();
             m_gameStateEntity = GetSingletonEntity<GameStateData>();
         }
 
@@ -27,8 +25,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
 
             var l_currentTime = (float)Time.ElapsedTime;
-            var l_gameStateData = m_gameStateData;
             var l_gameStateEntity = m_gameStateEntity;
+            var l_gameStateData = GetSingleton<GameStateData>();
             Entities.WithAny<DumbUfoTag, CleverUfoTag>().ForEach((Entity p_entity, ref ShootingData p_enemyShootingData,
                 ref EntityHealthData p_enemyHealth) =>
             {

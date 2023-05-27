@@ -12,7 +12,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
     {
         private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
 
-        private GameStateData m_gameStateData;
+        private Entity m_gameStateDataEntity;
 
 
         protected override void OnCreate()
@@ -23,42 +23,40 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
         protected override void OnStartRunning()
         {
-            m_gameStateData = GetSingleton<GameStateData>();
+            m_gameStateDataEntity = GetSingletonEntity<GameStateData>();
         }
 
         protected override void OnUpdate()
         {
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
 
-
+            var l_currentGameState = GetSingleton<GameStateData>();
+            var l_gameStateEntity = m_gameStateDataEntity;
             Entities.ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
                 in EntityHealthData p_asteroidHealth,
                 in AsteroidData p_asteroidData,
                 in LocalToWorld p_localToWorld) =>
             {
-                if (p_asteroidHealth.ShouldDie)
+                if (!p_asteroidHealth.ShouldDie) return;
+
+                for (int i = 0; i < p_asteroidData.PiecesBrokenIntoOnDestroy; i++)
                 {
-                    for (int i = 0; i < p_asteroidData.PiecesBrokenIntoOnDestroy; i++)
-                    {
-                        Entity l_asteroidEntity = l_ecb.Instantiate(p_asteroidData.SmallerAsteroidsToSpawn);
+                    Entity l_asteroidEntity = l_ecb.Instantiate(p_asteroidData.SmallerAsteroidsToSpawn);
 
-                        var l_newAsteroidTranslation = new Translation() { Value = p_localToWorld.Position };
-                        l_ecb.SetComponent(l_asteroidEntity, l_newAsteroidTranslation);
-                        float2 l_randomDirVector = p_randomData.Random.NextFloat2Direction();
-                        float3 l_randomMovingDirection = new float3(l_randomDirVector.x, 0, l_randomDirVector.y);
-                        var l_uninitializedAsteroidTag = new UninitializedAsteroid
-                            { IntendedDirection = l_randomMovingDirection };
-                        l_ecb.AddComponent<UninitializedAsteroid>(l_asteroidEntity);
-                        l_ecb.SetComponent(l_asteroidEntity, l_uninitializedAsteroidTag);
-                    }
-
-                    int l_asteroidBalance = 0;
-                    l_asteroidBalance--;
-                    l_asteroidBalance += p_asteroidData.PiecesBrokenIntoOnDestroy;
-                    m_gameStateData.TotalSpawnedAsteroids += l_asteroidBalance;
-                    l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
+                    var l_newAsteroidTranslation = new Translation() { Value = p_localToWorld.Position };
+                    l_ecb.SetComponent(l_asteroidEntity, l_newAsteroidTranslation);
+                    float2 l_randomDirVector = p_randomData.Random.NextFloat2Direction();
+                    float3 l_randomMovingDirection = new float3(l_randomDirVector.x, 0, l_randomDirVector.y);
+                    UninitializedAsteroid l_uninitializedAsteroidTag = new UninitializedAsteroid
+                        { IntendedDirection = l_randomMovingDirection };
+                    l_ecb.AddComponent(l_asteroidEntity, l_uninitializedAsteroidTag);
                 }
-            }).WithoutBurst().Run();
+
+                l_currentGameState.TotalSpawnedAsteroids += p_asteroidData.PiecesBrokenIntoOnDestroy - 1;
+                l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
+                l_ecb.SetComponent(l_gameStateEntity, l_currentGameState);
+            }).Schedule();
+
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }
     }

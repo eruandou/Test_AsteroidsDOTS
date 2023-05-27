@@ -24,26 +24,24 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
             }
 
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
-            Entities.ForEach((ref ShootingData p_playerShootingData, in LocalToWorld p_playerLocalToWorld,
-                    in Rotation p_playerRotation) =>
+            Entities.WithAll<PlayerTag>().ForEach((ref ShootingData p_shootingData, in LocalToWorld p_localToWorld,
+                    in Rotation p_rotation) =>
                 {
-                    if (!p_playerShootingData.ShouldShootProjectile) return;
+                    if (!p_shootingData.ShouldShootProjectile) return;
 
 
-                    //Make sure the player's input consequence gets reset ONLY if they actually shot this frame
-                    p_playerShootingData.ShouldShootProjectile = false;
+                    p_shootingData.ShouldShootProjectile = false;
 
                     //Instantiate the projectile entity and set its initial position and 
-                    Entity l_projectileEntity = l_ecb.Instantiate(p_playerShootingData.ProjectilePrefab);
-                    var l_projectileTag = new UninitializedProjectileTag()
-                        { IntendedForwards = p_playerLocalToWorld.Forward };
-                    l_ecb.AddComponent<UninitializedProjectileTag>(l_projectileEntity);
-                    l_ecb.SetComponent(l_projectileEntity, l_projectileTag);
-                    var l_spawnPosition = p_playerLocalToWorld.Position + p_playerLocalToWorld.Forward *
-                        p_playerShootingData.ProjectileSpawnForwardOffset;
+                    Entity l_projectileEntity = l_ecb.Instantiate(p_shootingData.ProjectilePrefab);
+                    UninitializedProjectileTag l_projectileTag = new UninitializedProjectileTag()
+                        { IntendedForwards = p_localToWorld.Forward };
+                    l_ecb.AddComponent(l_projectileEntity, l_projectileTag);
+                    var l_spawnPosition = p_localToWorld.Position + p_localToWorld.Forward *
+                        p_shootingData.ProjectileSpawnForwardOffset;
                     var l_projectileTranslation = new Translation() { Value = l_spawnPosition };
                     l_ecb.SetComponent(l_projectileEntity, l_projectileTranslation);
-                    l_ecb.SetComponent(l_projectileEntity, p_playerRotation);
+                    l_ecb.SetComponent(l_projectileEntity, p_rotation);
                 }
             ).Schedule();
 
