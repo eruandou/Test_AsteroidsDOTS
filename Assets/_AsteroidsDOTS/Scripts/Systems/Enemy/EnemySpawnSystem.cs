@@ -1,11 +1,11 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
+using _AsteroidsDOTS.Scripts.Enums;
 using _AsteroidsDOTS.Scripts.Globals;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Enemy
@@ -14,17 +14,10 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
     public class EnemySpawnSystem : SystemBase
     {
         private EndInitializationEntityCommandBufferSystem m_endInitializationBuffer;
-        private GameData m_gameData;
 
         protected override void OnCreate()
         {
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
-        }
-
-        protected override void OnStartRunning()
-        {
-            RequireSingletonForUpdate<GameData>();
-            m_gameData = GetSingleton<GameData>();
         }
 
         protected override void OnUpdate()
@@ -32,36 +25,56 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_currentTime = (float)Time.ElapsedTime;
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
 
-            if (m_gameData.NextEnemySpawnTime <= l_currentTime)
+            Entities.ForEach((ref GameStateData p_gameStateData, ref IndividualRandomData p_randomData,
+                in GameData p_gameData) =>
             {
-                m_gameData.NextEnemySpawnTime = GetNextEnemyTime() + l_currentTime;
-                SpawnEnemy(ref l_ecb);
-            }
+                if (p_gameStateData.NextEnemySpawnTime > l_currentTime || p_gameStateData.SpawnedUfo > 2)
+                    return;
 
-            CompleteDependency();
+                var l_randomNextTime =
+                    p_randomData.Random.NextFloat(p_gameData.SpawnEnemyTime.x, p_gameData.SpawnEnemyTime.y);
+                p_gameStateData.NextEnemySpawnTime = l_randomNextTime + l_currentTime;
+
+                //Get spawn position
+                float3 l_spawnPosition = GetRandomEnemySpawnPosition(ref p_randomData.Random);
+
+                //Get random direction
+                float3 l_normalizedDirection = GetRandomMovingDirection(ref p_randomData.Random);
+
+                //Get random enemy
+
+                Entity l_selectedEnemyEntity = GetRandomEnemyEntity(ref p_randomData.Random, in p_gameData);
+
+                var l_enemy = l_ecb.Instantiate(l_selectedEnemyEntity);
+                UninitializedUFOTag l_uninitializedUfoTag = new UninitializedUFOTag()
+                    { IntendedDirection = l_normalizedDirection };
+                l_ecb.AddComponent(l_enemy, l_uninitializedUfoTag);
+                l_ecb.SetComponent(l_enemy, new Translation() { Value = l_spawnPosition });
+                p_gameStateData.SpawnedUfo++;
+            }).Schedule();
+
+
+            m_endInitializationBuffer.AddJobHandleForProducer(Dependency);
         }
 
-        private float GetNextEnemyTime()
+        private static Entity GetRandomEnemyEntity(ref Random p_randomDataRandom, in GameData p_gameData)
         {
-            var l_randomNextTime = UnityEngine.Random.Range(m_gameData.SpawnEnemyTime.x, m_gameData.SpawnEnemyTime.y);
-            return l_randomNextTime;
+            var l_nextEnemyInt = p_randomDataRandom.NextInt(0, p_gameData.EnumAmount);
+            var l_selectedEnemy = (EnemyTypes)l_nextEnemyInt;
+            Entity l_selectedEnemyEntity = l_selectedEnemy switch
+            {
+                EnemyTypes.SmallUfo => p_gameData.SmallUfo,
+                EnemyTypes.BigUfo => p_gameData.BigUfo,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            return l_selectedEnemyEntity;
         }
 
-        private float3 GetSpawnPosition()
+        private static float3 GetRandomMovingDirection(ref Random p_randomDataRandom)
         {
-            var l_spawnOnLeft = UnityEngine.Random.value >= 0.5f;
-            var l_randomXPosition = l_spawnOnLeft
-                ? GameplayStaticGlobals.HorizontalLimits.x
-                : GameplayStaticGlobals.HorizontalLimits.y;
-            var l_randomZPosition = UnityEngine.Random.Range(GameplayStaticGlobals.VerticalLimits.x,
-                GameplayStaticGlobals.VerticalLimits.y);
-            return new float3(l_randomXPosition, 0, l_randomZPosition);
-        }
-
-        private float3 GetRandomDirection()
-        {
-            var l_randomDirectionX = UnityEngine.Random.value;
-            var l_randomDirectionZ = UnityEngine.Random.value;
+            var l_randomDir = p_randomDataRandom.NextFloat2(float2.zero, 1);
+            var l_randomDirectionX = l_randomDir.x;
+            var l_randomDirectionZ = l_randomDir.y;
 
             if (l_randomDirectionX == 0 && l_randomDirectionZ == 0)
             {
@@ -69,31 +82,18 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             }
 
             var l_direction = new float3(l_randomDirectionX, 0, l_randomDirectionZ);
-            var l_normalizedDirection = math.normalize(l_direction);
-            return l_normalizedDirection;
+            return math.normalize(l_direction);
         }
 
-
-        private void SpawnEnemy(ref EntityCommandBuffer p_entityBuffer)
+        private static float3 GetRandomEnemySpawnPosition(ref Random p_random)
         {
-            float3 l_randomPosition = GetSpawnPosition();
-            float3 l_direction = GetRandomDirection();
-            var l_enumAmount = typeof(EnemyTypes).GetEnumValues();
-            var l_nextEnemyInt = UnityEngine.Random.Range(0, l_enumAmount.Length);
-            var l_selectedEnemy = (EnemyTypes)l_enumAmount.GetValue(l_nextEnemyInt);
-            Entity l_selectedEnemyEntity = l_selectedEnemy switch
-            {
-                EnemyTypes.SmallUfo => m_gameData.SmallUfo,
-                EnemyTypes.BigUfo => m_gameData.BigUfo,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-
-            var l_enemy = p_entityBuffer.Instantiate(l_selectedEnemyEntity);
-            p_entityBuffer.AddComponent<UninitializedUFOTag>(l_enemy);
-            var l_uninitializedUfoTag = new UninitializedUFOTag() { IntendedDirection = l_direction };
-            p_entityBuffer.SetComponent(l_enemy, l_uninitializedUfoTag);
-            var l_enemyTranslation = new Translation() { Value = l_randomPosition };
-            p_entityBuffer.SetComponent(l_enemy, l_enemyTranslation);
+            var l_spawnOnLeft = p_random.NextBool();
+            var l_randomXPosition = l_spawnOnLeft
+                ? GameplayStaticGlobals.HorizontalLimits.x
+                : GameplayStaticGlobals.HorizontalLimits.y;
+            var l_randomZPosition = p_random.NextFloat(GameplayStaticGlobals.VerticalLimits.x,
+                GameplayStaticGlobals.VerticalLimits.y);
+            return new float3(l_randomXPosition, 0, l_randomZPosition);
         }
     }
 }

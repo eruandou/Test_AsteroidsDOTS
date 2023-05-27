@@ -20,15 +20,15 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         protected override void OnUpdate()
         {
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
-            Entities.ForEach((Entity l_enemyEntity, int entityInQueryIndex, ref IndividualRandomData p_randomData,
+            Entities.ForEach((Entity p_enemyEntity, int entityInQueryIndex, ref IndividualRandomData p_randomData,
                 in UninitializedUFOTag p_uninitializedUfo,
                 in EnemyMovementData p_movementData) =>
             {
                 p_randomData.Random = Random.CreateFromIndex((uint)entityInQueryIndex);
                 var l_linear = p_movementData.MovementSpeed * p_uninitializedUfo.IntendedDirection;
                 var l_physicsVelocity = new PhysicsVelocity() { Angular = float3.zero, Linear = l_linear };
-                l_ecb.SetComponent(l_enemyEntity, l_physicsVelocity);
-                l_ecb.RemoveComponent<UninitializedUFOTag>(l_enemyEntity);
+                l_ecb.SetComponent(p_enemyEntity, l_physicsVelocity);
+                l_ecb.RemoveComponent<UninitializedUFOTag>(p_enemyEntity);
             }).Schedule();
 
             m_endInitializationBuffer.AddJobHandleForProducer(Dependency);
