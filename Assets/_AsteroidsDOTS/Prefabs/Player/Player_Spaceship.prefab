@@ -25,11 +25,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2541324695666038750}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.78334, y: -214.28122, z: 149.97488}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1617383996124101649}
+  m_Father: {fileID: 8436712980494204245}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &489311144094459609
@@ -107,12 +107,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7104412345625413715}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.78334, y: 214.28122, z: -149.97488}
+  m_LocalPosition: {x: -0.1178334, y: 2.142812, z: -1.499749}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4587780591456416319}
+  m_Children: []
   m_Father: {fileID: 8436712980494204245}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &209871449144519391
 MeshFilter:
@@ -182,6 +181,7 @@ GameObject:
   - component: {fileID: 1112786153896918397}
   - component: {fileID: 8048102454698214412}
   - component: {fileID: 1558606597283049204}
+  - component: {fileID: 6803554895598515674}
   m_Layer: 0
   m_Name: Player_Spaceship
   m_TagString: Untagged
@@ -197,9 +197,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9105972151100958703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.77, y: 0, z: 1.16}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4587780591456416319}
   - {fileID: 1617383996124101649}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -268,10 +269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThrustImpulse: 0
   TorqueForce: 0
-  ThrustAccelerationRate: 3
-  RotationAcceleration: 45
-  MaxAngularSpeed: 50
-  MaxSpeed: 15
+  ThrustAccelerationRate: 7
+  RotationAcceleration: 90
+  MaxAngularSpeed: 120
+  MaxSpeed: 25
 --- !u!114 &1560583586637017503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,12 +288,12 @@ MonoBehaviour:
   m_ShapeType: 1
   m_PrimitiveCenter:
     x: 0
-    y: 139.93138
+    y: 1.3993138
     z: 0
   m_PrimitiveSize:
-    x: 616.4341
-    y: 616.4341
-    z: 857.1201
+    x: 6.1643405
+    y: 6.1643405
+    z: 8.571201
   m_PrimitiveOrientation:
     Value:
       x: -0
@@ -300,15 +301,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 857.1201
-    Radius: 308.21704
+    Height: 8.571201
+    Radius: 3.0821702
     Axis: 2
   m_Cylinder:
-    Height: 857.1201
-    Radius: 308.21704
+    Height: 8.571201
+    Radius: 3.0821702
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 428.56006
+  m_SphereRadius: 4.2856007
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 12.856801
@@ -375,7 +376,7 @@ MonoBehaviour:
         Category02: 1
         Category03: 0
         Category04: 1
-        Category05: 0
+        Category05: 1
         Category06: 0
         Category07: 0
         Category08: 0
@@ -541,3 +542,15 @@ MonoBehaviour:
   ProjectileSpawnForwardOffset: 2
   ShouldShootProjectile: 0
   LastShootingTime: 0
+--- !u!114 &6803554895598515674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cac4e9ab80b4663bdeb45ba5a5ca684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
