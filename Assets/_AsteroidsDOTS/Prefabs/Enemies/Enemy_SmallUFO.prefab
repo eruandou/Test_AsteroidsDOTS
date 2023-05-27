@@ -42,15 +42,14 @@ GameObject:
   - component: {fileID: 8455620529071276145}
   - component: {fileID: 5961799829659825339}
   - component: {fileID: -6036798249767667920}
-  - component: {fileID: -3505867249214482207}
   - component: {fileID: 5273087979090627388}
+  - component: {fileID: -3505867249214482207}
   - component: {fileID: 4246198346995797012}
   - component: {fileID: 3532163899740165428}
   - component: {fileID: 2875490270515383544}
   - component: {fileID: 9034334732026394853}
   - component: {fileID: 6080878477123792286}
   - component: {fileID: 8368050857944347199}
-  - component: {fileID: -1857923440211220867}
   m_Layer: 0
   m_Name: Enemy_SmallUFO
   m_TagString: Untagged
@@ -66,7 +65,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5313241694432662894}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.1, y: 0, z: 1.71}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 514443226642992746}
@@ -134,18 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1a80685d564d4182d26374bd197654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3505867249214482207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5313241694432662894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5359288108f94380a263213701961ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5273087979090627388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PointsToGiveOut: 1000
+--- !u!114 &-3505867249214482207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5313241694432662894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5359288108f94380a263213701961ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4246198346995797012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,9 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384d8b882de410f8e3a96d8142d2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootRate: 0
-  ProjectilePrefab: {fileID: 0}
-  ProjectileSpawnForwardOffset: 0
+  ShootRate: 0.45
+  ProjectilePrefab: {fileID: 1070880271403894716, guid: adc3a6e3a2f363d47b0dcddf9daa3b65, type: 3}
+  ProjectileSpawnForwardOffset: 0.8
   ShouldShootProjectile: 0
   LastShootingTime: 0
 --- !u!114 &3532163899740165428
@@ -189,8 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeadParticlesPrefab: {fileID: 0}
-  Health: 0
-  InvincibilityTime: 0
+  Health: 2
+  InvincibilityTime: 0.35
   CurrentInvincibilityTime: 0
   PendingHealthModification: 0
 --- !u!114 &2875490270515383544
@@ -219,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7bf42864954b7785417bd9f8773890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 0
+  MovementSpeed: 16
 --- !u!114 &6080878477123792286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +318,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 0
+      m_Value: 3
     m_Friction:
       m_Override: 0
       m_Value:
@@ -413,16 +412,3 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &-1857923440211220867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5313241694432662894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e1926c45864ec2994cdf28b0cac00c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Lifetime: 30
