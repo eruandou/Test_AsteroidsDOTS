@@ -20,7 +20,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
             float2 l_horizontalLimits = GameplayStaticGlobals.HorizontalLimits;
             float l_offset = GameplayStaticGlobals.ScreenLimitOffset;
             Entities.WithAll<WrappingEntityTag>().ForEach(
-                (ref Translation p_translation, ref PhysicsVelocity p_physicsVelocity) =>
+                (ref Translation p_translation, ref PhysicsVelocity p_physicsVelocity, ref Rotation p_rotation) =>
                 {
                     if (p_translation.Value.z > l_verticalLimits.y)
                     {
@@ -41,7 +41,8 @@ namespace _AsteroidsDOTS.Scripts.Systems
                         p_translation.Value.x = l_horizontalLimits.y - l_offset;
                     }
 
-                    //Hard hook Y axis to 0 not to allow weird behaviours
+                    p_rotation.Value.value.x = 0f;
+                    p_rotation.Value.value.z = 0f;
                     p_translation.Value.y = 0;
                 }).Schedule();
         }
