@@ -61,14 +61,12 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     float l_minZSafePosition = p_spawnData.ExcludedMinMaxZLocations.x;
                     float l_medianZSafeLocation = p_spawnData.MedianExcludedZLocation;
 
-                    float3 l_randomDirection = p_randomData.Random.NextFloat3();
-                    l_randomDirection.y = 0;
-                    l_randomDirection = math.normalize(l_randomDirection);
-                    var l_uninitializedAsteroidData = new UninitializedAsteroid()
+                    float2 l_randomDir = p_randomData.Random.NextFloat2Direction();
+                    float3 l_randomDirection = new float3(l_randomDir.x, 0, l_randomDir.y);
+                    UninitializedAsteroid l_uninitializedAsteroidData = new UninitializedAsteroid
                         { IntendedDirection = l_randomDirection };
 
-                    l_ecb.AddComponent<UninitializedAsteroid>(l_newAsteroidEntity);
-                    l_ecb.SetComponent(l_newAsteroidEntity, l_uninitializedAsteroidData);
+                    l_ecb.AddComponent(l_newAsteroidEntity, l_uninitializedAsteroidData);
 
                     var l_randomNewPositionX = p_randomData.Random.NextFloat(l_horizontalLimit.x,
                         l_horizontalLimit.y);
