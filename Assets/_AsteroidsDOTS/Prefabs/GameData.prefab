@@ -99,9 +99,9 @@ MonoBehaviour:
   SpawnEnemyTime:
     x: 15
     y: 40
-  NextEnemySpawnTime: 0
   SmallUfo: {fileID: 5313241694432662894, guid: a0819761190f6f747b40ea787cddd8a3, type: 3}
   BigUfo: {fileID: 5313241694432662894, guid: 5511d62144f36e74184f20150fe41f65, type: 3}
+  EnumAmount: 2
 --- !u!114 &2394196099489791509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,5 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37624ce9bf1847a8974ac514decf9665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnedUFOs: 0
+  SpawnedUfo: 0
   TotalSpawnedAsteroids: 0
+  NextEnemySpawnTime: 0
