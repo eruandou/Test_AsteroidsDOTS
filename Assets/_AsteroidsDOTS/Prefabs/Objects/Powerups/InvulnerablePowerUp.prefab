@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 872048251265381047}
   - component: {fileID: -1499160418273009336}
   - component: {fileID: -634209712851296182}
+  - component: {fileID: -7644281378134721794}
+  - component: {fileID: 398154030370255414}
   m_Layer: 0
-  m_Name: Test_Powerup
+  m_Name: InvulnerablePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9e7a55ace7447654ca7ef016a60dc9ea, type: 2}
+  - {fileID: 2100000, guid: 6a4b50b7dacb3af4186d029cf984b007, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,3 +278,30 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &-7644281378134721794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872048251265381041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
+--- !u!114 &398154030370255414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872048251265381041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e9b6df57544e90b525a51b5ec224be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlreadyPickedUp: 0
+  PowerUpType: 3
