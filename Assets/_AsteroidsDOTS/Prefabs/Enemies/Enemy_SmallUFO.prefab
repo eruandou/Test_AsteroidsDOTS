@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384d8b882de410f8e3a96d8142d2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootRate: 0.45
+  ShootRate: 0.4
   ProjectilePrefab: {fileID: 1070880271403894716, guid: adc3a6e3a2f363d47b0dcddf9daa3b65, type: 3}
   ProjectileSpawnForwardOffset: 0.8
   ShouldShootProjectile: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeadParticlesPrefab: {fileID: 0}
   Health: 2
+  MaxHealth: 2
   InvincibilityTime: 0.35
   CurrentInvincibilityTime: 0
   PendingHealthModification: 0
