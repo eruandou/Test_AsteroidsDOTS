@@ -1,5 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Asteroids;
+using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Burst;
 using Unity.Collections;
@@ -17,6 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
         [ReadOnly] public ComponentDataFromEntity<AsteroidData> AsteroidCDFE;
         [ReadOnly] public ComponentDataFromEntity<DumbUfoTag> DumbUfoTagCDFE;
         [ReadOnly] public ComponentDataFromEntity<CleverUfoTag> CleverUfoTagCDFE;
+        [ReadOnly] public ComponentDataFromEntity<PowerUpEntityData> PowerUpEntityCDFE;
         public EntityCommandBuffer Buffer;
 
         [BurstCompile]
@@ -70,10 +72,24 @@ namespace _AsteroidsDOTS.Scripts.Systems
             }
         }
 
-        //TODO: Fill with PowerUp logic on next iteration 
+        [BurstCompile]
         private bool CheckPowerUpCompatibility(Entity p_entityA, Entity p_entityB)
         {
-            return false;
+            var l_entityAIsPowerUp = PowerUpEntityCDFE.HasComponent(p_entityA);
+            var l_entityBIsPowerUp = PowerUpEntityCDFE.HasComponent(p_entityB);
+
+            if (!l_entityAIsPowerUp && !l_entityBIsPowerUp)
+                return false;
+
+            Entity l_powerUpEntity = l_entityAIsPowerUp ? p_entityA : p_entityB;
+
+            var l_intendedPlayerEntity = l_entityAIsPowerUp ? p_entityB : p_entityA;
+
+            if (!PlayerTagCDFE.HasComponent(l_intendedPlayerEntity)) return false;
+            PowerUpEntityData l_powerUpEntityData = PowerUpEntityCDFE[l_powerUpEntity];
+            l_powerUpEntityData.AlreadyPickedUp = true;
+            Buffer.SetComponent(l_powerUpEntity, l_powerUpEntityData);
+            return true;
         }
 
         /// <summary>
@@ -154,6 +170,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
                 PlayerTagCDFE = GetComponentDataFromEntity<PlayerTag>(true),
                 CleverUfoTagCDFE = GetComponentDataFromEntity<CleverUfoTag>(true),
                 DumbUfoTagCDFE = GetComponentDataFromEntity<DumbUfoTag>(true),
+                PowerUpEntityCDFE = GetComponentDataFromEntity<PowerUpEntityData>(true)
             };
             Dependency = l_collisionsJob.Schedule(m_stepPhysicsWorld.Simulation, ref m_buildPhysicsWorld.PhysicsWorld,
                 Dependency);
