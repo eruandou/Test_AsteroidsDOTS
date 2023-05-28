@@ -10,7 +10,6 @@ namespace _AsteroidsDOTS.Scripts.DataComponents.Asteroids
         [Header("Asteroid Death")] public Entity SmallerAsteroidsToSpawn;
         public int PiecesBrokenIntoOnDestroy;
 
-        [Header("Fixed data")] public float DamageOnContact;
-        public float2 RandomMinMaxVelocity;
+        [Header("Fixed data")] public float2 RandomMinMaxVelocity;
     }
 }
