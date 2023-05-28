@@ -53,7 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SmallerAsteroidsToSpawn: {fileID: 0}
   PiecesBrokenIntoOnDestroy: 0
-  DamageOnContact: 1
   RandomMinMaxVelocity:
     x: 15
     y: 25
@@ -276,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeadParticlesPrefab: {fileID: 6611014458208555736, guid: 6d5fe0163f72c7c468c1f2c042e5d551, type: 3}
   Health: 1
+  MaxHealth: 1
   InvincibilityTime: 0
   CurrentInvincibilityTime: 0
   PendingHealthModification: 0

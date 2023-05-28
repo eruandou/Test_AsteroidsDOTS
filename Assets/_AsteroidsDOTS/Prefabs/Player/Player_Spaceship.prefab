@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 8048102454698214412}
   - component: {fileID: 1558606597283049204}
   - component: {fileID: 6803554895598515674}
+  - component: {fileID: 3030602013359011185}
   m_Layer: 0
   m_Name: Player_Spaceship
   m_TagString: Untagged
@@ -505,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeadParticlesPrefab: {fileID: 6611014458208555736, guid: 98ee34999994a754f9f3bfdcd2936dac, type: 3}
   Health: 5
+  MaxHealth: 5
   InvincibilityTime: 1.5
   CurrentInvincibilityTime: 0
   PendingHealthModification: 0
@@ -554,3 +556,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cac4e9ab80b4663bdeb45ba5a5ca684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3030602013359011185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41570860c715492fa66f38ab15347b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletsToShoot: 1
+  BulletAngleDifference: 50

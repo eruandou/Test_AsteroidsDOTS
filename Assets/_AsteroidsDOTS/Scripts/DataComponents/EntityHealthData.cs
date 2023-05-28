@@ -8,6 +8,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
     {
         public Entity DeadParticlesPrefab;
         public float Health;
+        public float MaxHealth;
         public float InvincibilityTime;
         [HideInInspector] public float CurrentInvincibilityTime;
         [HideInInspector] public bool IsInvincible => CurrentInvincibilityTime <= 0;
