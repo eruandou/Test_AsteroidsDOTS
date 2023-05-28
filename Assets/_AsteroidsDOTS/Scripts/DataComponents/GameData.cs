@@ -10,6 +10,14 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         [Header("Enemies")] public float2 SpawnEnemyTime;
         public Entity SmallUfo;
         public Entity BigUfo;
-        public int EnumAmount;
+        public int EnemyEnumAmount;
+        [Header("Powerups")]
+        public Entity HealthPU;
+        public Entity DoublePointsPU;
+        public Entity InvulnerablePU;
+        public Entity SuperBombPU;
+        public Entity DoubleShotPU;
+        public float2 SpawnPowerUpTime;
+        public int PowerUpEnumAmount;
     }
 }

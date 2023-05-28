@@ -101,7 +101,16 @@ MonoBehaviour:
     y: 40
   SmallUfo: {fileID: 5313241694432662894, guid: a0819761190f6f747b40ea787cddd8a3, type: 3}
   BigUfo: {fileID: 5313241694432662894, guid: 5511d62144f36e74184f20150fe41f65, type: 3}
-  EnumAmount: 2
+  EnemyEnumAmount: 2
+  HealthPU: {fileID: 872048251265381041, guid: 00abe331060475646b4513bb186dd33c, type: 3}
+  DoublePointsPU: {fileID: 872048251265381041, guid: 5139081b3bd17954f83038becdb2deff, type: 3}
+  InvulnerablePU: {fileID: 872048251265381041, guid: 84a8a29923bc6f6478bf2ec1c72febaa, type: 3}
+  SuperBombPU: {fileID: 872048251265381041, guid: 851e25aabde9834468a9355d6e8d2f4f, type: 3}
+  DoubleShotPU: {fileID: 872048251265381041, guid: 24c284a697a531b46b3d3baeb11d73fb, type: 3}
+  SpawnPowerUpTime:
+    x: 12
+    y: 40
+  PowerUpEnumAmount: 5
 --- !u!114 &2394196099489791509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +126,7 @@ MonoBehaviour:
   SpawnedUfo: 0
   TotalSpawnedAsteroids: 0
   NextEnemySpawnTime: 0
+  NextPowerUpSpawnTime: 0
+  PowerUpAlreadySpawned: 0
+  PointsMultiplier: 1
+  CurrentPoints: 0

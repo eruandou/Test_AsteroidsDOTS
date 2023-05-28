@@ -20,6 +20,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
         }
 
+        //TODO: Jobify this for added B U R S T  C O M P I L I N G 
         protected override void OnUpdate()
         {
             var l_currentTime = (float)Time.ElapsedTime;
@@ -59,7 +60,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
         private static Entity GetRandomEnemyEntity(ref Random p_randomDataRandom, in GameData p_gameData)
         {
-            var l_nextEnemyInt = p_randomDataRandom.NextInt(0, p_gameData.EnumAmount);
+            var l_nextEnemyInt = p_randomDataRandom.NextInt(0, p_gameData.EnemyEnumAmount);
             var l_selectedEnemy = (EnemyTypes)l_nextEnemyInt;
             Entity l_selectedEnemyEntity = l_selectedEnemy switch
             {
