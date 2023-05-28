@@ -1,6 +1,8 @@
+using Unity.Entities;
+
 namespace _AsteroidsDOTS.Scripts.DataComponents.Powerups
 {
-    public struct FullRecoveryPowerUpData : IPowerUp
+    public interface IPowerUp : IComponentData
     {
     }
 }

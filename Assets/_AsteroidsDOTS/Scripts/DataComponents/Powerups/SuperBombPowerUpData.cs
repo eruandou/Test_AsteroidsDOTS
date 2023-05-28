@@ -1,6 +1,6 @@
 namespace _AsteroidsDOTS.Scripts.DataComponents.Powerups
 {
-    public struct FullRecoveryPowerUpData : IPowerUp
+    public struct SuperBombPowerUpData : IPowerUp
     {
     }
 }
