@@ -99,6 +99,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                 }
             };
 
+            RequireSingletonForUpdate<PlayerTag>();
             RequireForUpdate(GetEntityQuery(m_ufoQueryDesc));
         }
 
