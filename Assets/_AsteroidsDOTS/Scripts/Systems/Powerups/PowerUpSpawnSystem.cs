@@ -9,6 +9,7 @@ using Random = Unity.Mathematics.Random;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Powerups
 {
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class PowerUpSpawnSystem : SystemBase
     {
         private EndInitializationEntityCommandBufferSystem m_endInitializationBuffer;
@@ -42,6 +43,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
                 l_ecb.SetComponent(l_powerup, new Translation() { Value = l_spawnPosition });
                 p_gameStateData.PowerUpAlreadySpawned = true;
             }).Schedule();
+
+            m_endInitializationBuffer.AddJobHandleForProducer(Dependency);
         }
 
         private static Entity GetRandomEnemyEntity(ref Random p_randomDataRandom, in GameData p_gameData)
