@@ -19,5 +19,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         public Entity DoubleShotPU;
         public float2 SpawnPowerUpTime;
         public int PowerUpEnumAmount;
+
+        [Header("Prefabs")] public Entity ShieldEntity;
     }
 }

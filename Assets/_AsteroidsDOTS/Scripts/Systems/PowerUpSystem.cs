@@ -69,7 +69,6 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     {
                         Duration = 10,
                         IsInUse = false,
-                        ShieldEntity = Entity.Null
                     };
                     l_entityToWhichToApplyPowerUp = PlayerEntity;
                     Buffer.AddComponent(l_entityToWhichToApplyPowerUp, l_invulnerability);
