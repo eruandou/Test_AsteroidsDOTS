@@ -1,6 +1,7 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
+using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.Globals;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -17,6 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
         protected override void OnCreate()
         {
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
+            RequireSingletonForUpdate<PlayerTag>();
         }
 
         protected override void OnUpdate()

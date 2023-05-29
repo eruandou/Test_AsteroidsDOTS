@@ -18,6 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         protected override void OnCreate()
         {
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
+            RequireSingletonForUpdate<PlayerTag>();
         }
 
 
