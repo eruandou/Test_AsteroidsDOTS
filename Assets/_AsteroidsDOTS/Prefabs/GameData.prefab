@@ -111,7 +111,9 @@ MonoBehaviour:
     x: 12
     y: 40
   PowerUpEnumAmount: 5
+  PlayerRespawnTime: 3
   ShieldEntity: {fileID: 4720377371885462598, guid: 08e32f5c9b00daa4e94bda076382c836, type: 3}
+  PlayerShip: {fileID: 9105972151100958703, guid: 28b2b5f182729a943a9ea20d712bbc83, type: 3}
 --- !u!114 &2394196099489791509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +133,4 @@ MonoBehaviour:
   PowerUpAlreadySpawned: 0
   PointsMultiplier: 1
   CurrentPoints: 0
+  CurrentPlayerLives: 3
