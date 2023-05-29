@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -634209712851296182}
   - component: {fileID: -523662075601997553}
   - component: {fileID: 4036777686618667967}
+  - component: {fileID: 5966151760405917759}
   m_Layer: 0
   m_Name: SuperBombPowerUp
   m_TagString: Untagged
@@ -97,14 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShapeType: 0
+  m_ShapeType: 1
   m_PrimitiveCenter:
     x: 0
     y: 0.000000059604645
     z: -0.011700153
   m_PrimitiveSize:
     x: 1.672712
-    y: 1.4299681
+    y: 1.672712
     z: 8.023399
   m_PrimitiveOrientation:
     Value:
@@ -255,6 +256,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AlreadyPickedUp: 0
   PowerUpType: 4
+--- !u!114 &5966151760405917759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872048251265381041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b77c855eceba24583cc23895e19eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotateSpeed: 45
 --- !u!1 &7474909737051368604
 GameObject:
   m_ObjectHideFlags: 0
