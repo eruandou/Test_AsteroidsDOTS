@@ -1,5 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
+using _AsteroidsDOTS.Scripts.DataComponents.UI;
 using Unity.Entities;
 
 namespace _AsteroidsDOTS.Scripts.Systems
@@ -18,23 +19,34 @@ namespace _AsteroidsDOTS.Scripts.Systems
         protected override void OnStartRunning()
         {
             m_gameStateEntity = GetSingletonEntity<GameStateData>();
+            
+            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
+            var l_uiUpdateEntity = GetSingletonEntity<UIUpdater>();
+            Entities.ForEach((in GameStateData p_gameStateData) =>
+            {
+                l_ecb.AddComponent<DirtyUITag>(l_uiUpdateEntity);
+            }).Schedule();
+
+            m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }
 
         protected override void OnUpdate()
         {
-            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
+            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer().AsParallelWriter();
             var l_gameStateData = GetSingleton<GameStateData>();
+            var l_uiUpdateEntity = GetSingletonEntity<UIUpdater>();
             var l_gameStateEntity = m_gameStateEntity;
             Entities.WithAll<DeadPointsEntityTag>()
-                .ForEach((Entity p_entity, in PointAwardData p_pointAwardData) =>
+                .ForEach((Entity p_entity, int entityInQueryIndex, in PointAwardData p_pointAwardData) =>
                 {
                     //Add points here.
                     l_gameStateData.CurrentPoints +=
-                        p_pointAwardData.PointsToGiveOut * l_gameStateData.PointsMultiplier;
-                    l_ecb.DestroyEntity(p_entity);
-                    l_ecb.SetComponent(l_gameStateEntity, l_gameStateData);
+                        (int)(p_pointAwardData.PointsToGiveOut * l_gameStateData.PointsMultiplier);
+                    l_ecb.DestroyEntity(entityInQueryIndex, p_entity);
+                    l_ecb.SetComponent(l_gameStateEntity.Index, l_gameStateEntity, l_gameStateData);
+                    l_ecb.AddComponent<DirtyUITag>(l_uiUpdateEntity.Index, l_uiUpdateEntity);
                 })
-                .Schedule();
+                .ScheduleParallel();
 
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }
