@@ -10,7 +10,7 @@ using Random = Unity.Mathematics.Random;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class EnemySpawnSystem : SystemBase
     {
         private EndInitializationEntityCommandBufferSystem m_endInitializationBuffer;
@@ -19,6 +19,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         {
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
         }
+
 
         //TODO: Jobify this for added B U R S T  C O M P I L I N G 
         protected override void OnUpdate()

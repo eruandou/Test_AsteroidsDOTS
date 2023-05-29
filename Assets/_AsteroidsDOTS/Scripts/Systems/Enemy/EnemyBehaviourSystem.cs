@@ -35,7 +35,11 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                     l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
                     l_gameStateData.SpawnedUfo--;
                     l_ecb.SetComponent(l_gameStateEntity, l_gameStateData);
-                    return;
+
+                    if (p_enemyHealth.DeadParticlesPrefab == Entity.Null)
+                        return;
+
+                    l_ecb.Instantiate(p_enemyHealth.DeadParticlesPrefab);
                 }
 
                 if (p_enemyShootingData.NextShootingTime <= l_currentTime)
