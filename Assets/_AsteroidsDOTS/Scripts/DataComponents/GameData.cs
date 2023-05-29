@@ -20,6 +20,11 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         public float2 SpawnPowerUpTime;
         public int PowerUpEnumAmount;
 
+        [Header("Others)")] public float PlayerRespawnTime;
         [Header("Prefabs")] public Entity ShieldEntity;
+        public Entity PlayerShip;
+        
+        
+        
     }
 }

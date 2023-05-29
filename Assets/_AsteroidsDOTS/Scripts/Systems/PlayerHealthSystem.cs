@@ -12,16 +12,33 @@ namespace _AsteroidsDOTS.Scripts.Systems
         protected override void OnCreate()
         {
             m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
+            RequireSingletonForUpdate<PlayerTag>();
         }
 
         protected override void OnUpdate()
         {
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
+            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameDataEntity = GetSingletonEntity<GameData>();
+            var l_gameData = GetSingleton<GameData>();
             Entities.WithAny<PlayerTag>().ForEach((Entity p_entity, in EntityHealthData p_healthData) =>
             {
                 if (p_healthData.ShouldDie)
                 {
                     l_ecb.DestroyEntity(p_entity);
+                    l_gameStateData.CurrentPlayerLives--;
+                    l_ecb.SetComponent(l_gameDataEntity, l_gameStateData);
+                    if (!l_gameStateData.PlayerLost)
+                    {
+                        l_ecb.AddComponent(l_gameDataEntity, new RespawnPlayerData()
+                        {
+                            RespawnTimeLeft = l_gameData.PlayerRespawnTime
+                        });
+                    }
+                    else
+                    {
+                        //Set Game Finish UI via Tag
+                    }
                 }
             }).Schedule();
 

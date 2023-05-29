@@ -12,6 +12,9 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         [ReadOnlyInspector] public float NextPowerUpSpawnTime;
         [ReadOnlyInspector] public bool PowerUpAlreadySpawned;
         public float PointsMultiplier;
-        [ReadOnlyInspector] public float CurrentPoints;
+        [ReadOnlyInspector] public int CurrentPoints;
+        public int CurrentPlayerLives;
+
+        public bool PlayerLost => CurrentPlayerLives <= 0;
     }
 }
