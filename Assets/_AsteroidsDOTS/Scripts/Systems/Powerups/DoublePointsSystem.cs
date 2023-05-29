@@ -11,6 +11,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
         protected override void OnCreate()
         {
             RequireSingletonForUpdate<DoublePointsPowerUpData>();
+            m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()
