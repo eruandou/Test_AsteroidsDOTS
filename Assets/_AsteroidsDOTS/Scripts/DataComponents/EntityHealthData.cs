@@ -11,7 +11,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         public float MaxHealth;
         public float InvincibilityTime;
         [HideInInspector] public float CurrentInvincibilityTime;
-        [HideInInspector] public bool IsInvincible => CurrentInvincibilityTime <= 0;
+        [HideInInspector] public bool IsInvincible => CurrentInvincibilityTime > 0;
 
         public bool ShouldDie => Health <= 0;
 
