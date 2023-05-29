@@ -111,6 +111,7 @@ MonoBehaviour:
     x: 12
     y: 40
   PowerUpEnumAmount: 5
+  ShieldEntity: {fileID: 4720377371885462598, guid: 08e32f5c9b00daa4e94bda076382c836, type: 3}
 --- !u!114 &2394196099489791509
 MonoBehaviour:
   m_ObjectHideFlags: 0
