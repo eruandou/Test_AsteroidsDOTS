@@ -1,5 +1,6 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Burst;
@@ -13,7 +14,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
         [ReadOnly] public ComponentTypeHandle<PowerUpEntityData> PowerUpEntityDataHandle;
         public Entity PlayerEntity;
         public Entity GameStateEntity;
-        public GameStateData GameStateData;
+        public GameStatePowerUpData GameStateData;
         [ReadOnly, DeallocateOnJobCompletion] public NativeArray<Entity> PowerUpEntities;
         public EntityCommandBuffer Buffer;
 
@@ -108,8 +109,8 @@ namespace _AsteroidsDOTS.Scripts.Systems
         {
             var l_playerEntity = GetSingletonEntity<PlayerTag>();
             var l_query = GetEntityQuery(m_powerupQueryDesc);
-            var l_gameStateEntity = GetSingletonEntity<GameStateData>();
-            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameStateEntity = GetSingletonEntity<GameStatePowerUpData>();
+            var l_gameStateData = GetSingleton<GameStatePowerUpData>();
             var l_powerUpJob = new PowerUpJob()
             {
                 PowerUpEntityDataHandle = GetComponentTypeHandle<PowerUpEntityData>(),

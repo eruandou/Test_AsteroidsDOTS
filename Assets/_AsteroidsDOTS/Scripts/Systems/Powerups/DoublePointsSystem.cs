@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
 using Unity.Entities;
 
@@ -18,7 +19,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
         {
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
             var l_deltaTime = Time.DeltaTime;
-            Entities.ForEach((Entity p_entity, ref GameStateData p_gameStateData,
+            Entities.ForEach((Entity p_entity, ref GameStateDataPlayer p_gameStateData,
                 ref DoublePointsPowerUpData p_doublePointsData) =>
             {
                 if (!p_doublePointsData.IsInUse)

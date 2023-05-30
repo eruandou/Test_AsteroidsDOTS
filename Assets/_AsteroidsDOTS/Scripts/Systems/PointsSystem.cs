@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.DataComponents.UI;
 using Unity.Entities;
@@ -18,22 +19,18 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
         protected override void OnStartRunning()
         {
-            m_gameStateEntity = GetSingletonEntity<GameStateData>();
-            
+            m_gameStateEntity = GetSingletonEntity<GameStateDataPlayer>();
+
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
             var l_uiUpdateEntity = GetSingletonEntity<UIUpdater>();
-            Entities.ForEach((in GameStateData p_gameStateData) =>
-            {
-                l_ecb.AddComponent<DirtyUITag>(l_uiUpdateEntity);
-            }).Schedule();
-
+            l_ecb.AddComponent<DirtyUITag>(l_uiUpdateEntity);
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }
 
         protected override void OnUpdate()
         {
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer().AsParallelWriter();
-            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameStateData = GetSingleton<GameStateDataPlayer>();
             var l_uiUpdateEntity = GetSingletonEntity<UIUpdater>();
             var l_gameStateEntity = m_gameStateEntity;
             Entities.WithAll<DeadPointsEntityTag>()

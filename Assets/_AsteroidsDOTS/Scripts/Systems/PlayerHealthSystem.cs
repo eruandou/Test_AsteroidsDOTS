@@ -1,5 +1,7 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
+using _AsteroidsDOTS.Scripts.DataComponents.UI;
 using Unity.Entities;
 
 namespace _AsteroidsDOTS.Scripts.Systems
@@ -18,7 +20,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
         protected override void OnUpdate()
         {
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
-            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameStateData = GetSingleton<GameStateDataPlayer>();
             var l_gameDataEntity = GetSingletonEntity<GameData>();
             var l_gameData = GetSingleton<GameData>();
             Entities.WithAny<PlayerTag>().ForEach((Entity p_entity, in EntityHealthData p_healthData) =>
@@ -38,6 +40,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     else
                     {
                         //Set Game Finish UI via Tag
+                        l_ecb.AddComponent<GameFinishedTag>(l_gameDataEntity);
                     }
                 }
             }).Schedule();

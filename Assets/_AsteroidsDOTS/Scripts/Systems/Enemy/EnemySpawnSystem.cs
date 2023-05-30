@@ -1,5 +1,6 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.Enums;
 using _AsteroidsDOTS.Scripts.Globals;
@@ -28,7 +29,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_currentTime = (float)Time.ElapsedTime;
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
 
-            Entities.ForEach((ref GameStateData p_gameStateData, ref IndividualRandomData p_randomData,
+            Entities.ForEach((ref GameStateDataUfo p_gameStateData, ref IndividualRandomData p_randomData,
                 in GameData p_gameData) =>
             {
                 if (p_gameStateData.NextEnemySpawnTime > l_currentTime || p_gameStateData.SpawnedUfo > 2)
@@ -55,7 +56,6 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                 l_ecb.SetComponent(l_enemy, new Translation() { Value = l_spawnPosition });
                 p_gameStateData.SpawnedUfo++;
             }).Schedule();
-
 
             m_endInitializationBuffer.AddJobHandleForProducer(Dependency);
         }

@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.UI;
 using Unity.Entities;
 
@@ -18,7 +19,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
         protected override void OnUpdate()
         {
             var l_ecb = m_beginPresentationBuffer.CreateCommandBuffer();
-            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameStateData = GetSingleton<GameStateDataPlayer>();
 
             Entities.WithAll<DirtyUITag>().ForEach((Entity p_entity, UIUpdater p_uiUpdater) =>
             {

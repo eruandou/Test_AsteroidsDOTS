@@ -1,6 +1,7 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Asteroids;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.Globals;
 using Unity.Entities;
@@ -37,7 +38,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
             var l_verticalLimit = GameplayStaticGlobals.VerticalLimits;
 
 
-            Entities.ForEach((ref IndividualRandomData p_randomData, ref GameStateData p_gameStateData,
+            Entities.ForEach((ref IndividualRandomData p_randomData, ref GameStateDataAsteroids p_gameStateData,
                 in InitialAsteroidSpawnData p_spawnData) =>
             {
                 if (p_gameStateData.TotalSpawnedAsteroids > 0)

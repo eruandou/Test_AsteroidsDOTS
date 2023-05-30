@@ -1,5 +1,6 @@
 using System;
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.Globals;
@@ -25,7 +26,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
         {
             var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
             var l_currentTime = (float)Time.ElapsedTime;
-            Entities.ForEach((ref GameStateData p_gameStateData, ref IndividualRandomData p_randomData,
+            Entities.ForEach((ref GameStatePowerUpData p_gameStateData, ref IndividualRandomData p_randomData,
                 in GameData p_gameData) =>
             {
                 if (p_gameStateData.NextPowerUpSpawnTime > l_currentTime || p_gameStateData.PowerUpAlreadySpawned)

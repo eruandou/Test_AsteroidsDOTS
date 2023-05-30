@@ -18,7 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
 
         protected override void OnUpdate()
         {
-            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
+            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer().AsParallelWriter();
             Entities.ForEach((Entity p_entity, int entityInQueryIndex,
                 ref IndividualRandomData p_randomData, in AsteroidData p_asteroidData,
                 in UninitializedAsteroid p_uninitializedAsteroid) =>
@@ -28,9 +28,9 @@ namespace _AsteroidsDOTS.Scripts.Systems
                               p_randomData.Random.NextFloat(p_asteroidData.RandomMinMaxVelocity.x,
                                   p_asteroidData.RandomMinMaxVelocity.y);
                 var l_physicsVelocity = new PhysicsVelocity() { Linear = l_speed };
-                l_ecb.SetComponent(p_entity, l_physicsVelocity);
-                l_ecb.RemoveComponent<UninitializedAsteroid>(p_entity);
-            }).Schedule();
+                l_ecb.SetComponent(entityInQueryIndex, p_entity, l_physicsVelocity);
+                l_ecb.RemoveComponent<UninitializedAsteroid>(entityInQueryIndex, p_entity);
+            }).ScheduleParallel();
 
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
         }

@@ -1,5 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Asteroids;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -18,21 +19,22 @@ namespace _AsteroidsDOTS.Scripts.Systems
         protected override void OnCreate()
         {
             m_endSimulationBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-            RequireSingletonForUpdate<GameStateData>();
+            RequireSingletonForUpdate<GameStateDataAsteroids>();
         }
 
         protected override void OnStartRunning()
         {
-            m_gameStateDataEntity = GetSingletonEntity<GameStateData>();
+            m_gameStateDataEntity = GetSingletonEntity<GameStateDataAsteroids>();
         }
 
         protected override void OnUpdate()
         {
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
 
-            var l_currentGameState = GetSingleton<GameStateData>();
+            var l_currentGameState = GetSingleton<GameStateDataAsteroids>();
             var l_gameStateEntity = m_gameStateDataEntity;
-            Entities.ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
+
+            Entities.WithNone<DeadPointsEntityTag>().ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
                 in EntityHealthData p_asteroidHealth,
                 in AsteroidData p_asteroidData,
                 in LocalToWorld p_localToWorld) =>

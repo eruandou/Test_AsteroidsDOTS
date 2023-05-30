@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Powerups;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Burst;
@@ -61,7 +62,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Powerups
             {
                 Buffer = m_endInitilizationBuffer.CreateCommandBuffer(),
                 HealthDataHandle = GetComponentTypeHandle<EntityHealthData>(false),
-                GameStateDataEntity = GetSingletonEntity<GameStateData>()
+                GameStateDataEntity = GetSingletonEntity<GameStatePowerUpData>()
             };
 
             Dependency = l_killEverythingJob.Schedule(l_killablesQuery, Dependency);

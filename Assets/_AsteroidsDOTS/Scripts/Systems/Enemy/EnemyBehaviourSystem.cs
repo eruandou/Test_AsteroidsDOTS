@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Entities;
 
@@ -17,7 +18,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
         protected override void OnStartRunning()
         {
-            m_gameStateEntity = GetSingletonEntity<GameStateData>();
+            m_gameStateEntity = GetSingletonEntity<GameStateDataUfo>();
         }
 
         protected override void OnUpdate()
@@ -26,7 +27,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
             var l_currentTime = (float)Time.ElapsedTime;
             var l_gameStateEntity = m_gameStateEntity;
-            var l_gameStateData = GetSingleton<GameStateData>();
+            var l_gameStateData = GetSingleton<GameStateDataUfo>();
             Entities.WithAny<DumbUfoTag, CleverUfoTag>().ForEach((Entity p_entity, ref ShootingData p_enemyShootingData,
                 ref EntityHealthData p_enemyHealth) =>
             {
