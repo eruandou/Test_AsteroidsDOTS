@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 417206508033385675}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5422676868557856600}
   m_RootOrder: 0
@@ -211,32 +211,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShapeType: 0
+  m_ShapeType: 1
   m_PrimitiveCenter:
-    x: -0.0075945854
-    y: -0.32238054
-    z: -0.038590908
+    x: -0.015189171
+    y: -0.6447611
+    z: -0.077181816
   m_PrimitiveSize:
-    x: 8.674421
-    y: 7.008794
-    z: 3.9612932
+    x: 14.017588
+    y: 14.017588
+    z: 17.348843
   m_PrimitiveOrientation:
     Value:
-      x: -0
-      y: 0
-      z: 0
+      x: -33.8
+      y: 90
+      z: 90
     RotationOrder: 4
   m_Capsule:
-    Height: 8.674421
-    Radius: 3.504397
-    Axis: 0
+    Height: 17.348843
+    Radius: 7.008794
+    Axis: 2
   m_Cylinder:
-    Height: 3.9612932
-    Radius: 4.3372107
+    Height: 17.348843
+    Radius: 7.008794
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 4.3372107
-  m_MinimumSkinnedVertexWeight: 0.1
+  m_SphereRadius: 8.674421
+  m_MinimumSkinnedVertexWeight: 0.088
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.13011631
     m_BevelRadius: 0.05

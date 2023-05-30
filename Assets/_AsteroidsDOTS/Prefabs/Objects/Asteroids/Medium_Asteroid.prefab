@@ -130,29 +130,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShapeType: 0
+  m_ShapeType: 1
   m_PrimitiveCenter:
     x: -0.088391066
     y: -0.34571648
     z: 0.37475872
   m_PrimitiveSize:
-    x: 5.6227026
-    y: 7.846217
-    z: 6.1676626
+    x: 6.1676626
+    y: 6.1676626
+    z: 7.846217
   m_PrimitiveOrientation:
     Value:
-      x: -0
+      x: -90
       y: 0
-      z: 0
+      z: -90
     RotationOrder: 4
   m_Capsule:
     Height: 7.846217
     Radius: 3.0838313
-    Axis: 1
+    Axis: 2
   m_Cylinder:
     Height: 7.846217
     Radius: 3.0838313
-    Axis: 1
+    Axis: 2
   m_CylinderSideCount: 20
   m_SphereRadius: 3.9231086
   m_MinimumSkinnedVertexWeight: 0.1
