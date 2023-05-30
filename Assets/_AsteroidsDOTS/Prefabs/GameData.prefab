@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5518329714307713988}
   - component: {fileID: 5518329714307713987}
   - component: {fileID: 2510371558322477310}
-  - component: {fileID: 2394196099489791509}
+  - component: {fileID: 7264916556742115305}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -114,7 +114,7 @@ MonoBehaviour:
   PlayerRespawnTime: 3
   ShieldEntity: {fileID: 4720377371885462598, guid: 08e32f5c9b00daa4e94bda076382c836, type: 3}
   PlayerShip: {fileID: 9105972151100958703, guid: 28b2b5f182729a943a9ea20d712bbc83, type: 3}
---- !u!114 &2394196099489791509
+--- !u!114 &7264916556742115305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,14 +123,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5518329714307713991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37624ce9bf1847a8974ac514decf9665, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f123d25c8804c54afec49685bbdc070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnedUfo: 0
-  TotalSpawnedAsteroids: 0
-  NextEnemySpawnTime: 0
-  NextPowerUpSpawnTime: 0
-  PowerUpAlreadySpawned: 0
-  PointsMultiplier: 1
-  CurrentPoints: 0
-  CurrentPlayerLives: 3
+  m_defaultPlayerLives: 3
+  m_defaultMultiplier: 1
