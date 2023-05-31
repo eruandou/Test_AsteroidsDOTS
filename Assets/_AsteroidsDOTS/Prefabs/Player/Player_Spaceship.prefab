@@ -184,6 +184,8 @@ GameObject:
   - component: {fileID: 3030602013359011185}
   - component: {fileID: 6993732176884399482}
   - component: {fileID: 3163595994657384532}
+  - component: {fileID: 7201559770374448201}
+  - component: {fileID: 993932367193939907}
   m_Layer: 0
   m_Name: Player_Spaceship
   m_TagString: Untagged
@@ -572,3 +574,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409c579ed9b54116a6320369c42a5886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7201559770374448201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d1f26a95644195abce1d613e395033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotString: GenericShoot
+  shotVolume: 1
+--- !u!114 &993932367193939907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec1909806734a799526acd69e0b9e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionSound: ExplodeSmall
+  destructionVolume: 0.5

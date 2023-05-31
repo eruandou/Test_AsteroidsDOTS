@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6614517273523466234}
   - component: {fileID: 8797055930921370665}
   - component: {fileID: -4451317772196637199}
+  - component: {fileID: -8440832007828703568}
   m_Layer: 0
   m_Name: Medium_Asteroid
   m_TagString: Untagged
@@ -319,6 +320,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Random:
     state: 0
+--- !u!114 &-8440832007828703568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614755087043921378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec1909806734a799526acd69e0b9e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionSound: ExplodeMedium
 --- !u!1 &5206356075175990391
 GameObject:
   m_ObjectHideFlags: 0

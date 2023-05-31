@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1445590752528193423}
   - component: {fileID: -5368002421796606844}
   - component: {fileID: 1210061425223733296}
+  - component: {fileID: 1136372537611854846}
   m_Layer: 0
   m_Name: Small_Asteroid
   m_TagString: Untagged
@@ -319,6 +320,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Random:
     state: 0
+--- !u!114 &1136372537611854846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614755087043921378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec1909806734a799526acd69e0b9e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionSound: ExplodeSmall
 --- !u!1 &4645480394191320795
 GameObject:
   m_ObjectHideFlags: 0

@@ -118,6 +118,9 @@ GameObject:
   - component: {fileID: 5752614171088625193}
   - component: {fileID: -866962137098569920}
   - component: {fileID: -7795888555279414953}
+  - component: {fileID: 3230963701360615972}
+  - component: {fileID: -463480288302149454}
+  - component: {fileID: 1649590119326365240}
   m_Layer: 0
   m_Name: Enemy_BigUFO
   m_TagString: Untagged
@@ -432,3 +435,46 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &3230963701360615972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5313241694432662894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec1909806734a799526acd69e0b9e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionSound: ExplodeMedium
+  destructionVolume: 0.5
+--- !u!114 &-463480288302149454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5313241694432662894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae49820672874ec9a6c883d9e6c12ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMoveSound: UfoBigMove
+  moveVolume: 0.1
+  shouldLoop: 1
+--- !u!114 &1649590119326365240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5313241694432662894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d1f26a95644195abce1d613e395033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotString: GenericShoot
+  shotVolume: 1
