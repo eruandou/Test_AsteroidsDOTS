@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36623a0257024678af77606b4f73b171, type: 3}
+  m_Name: AudioData
+  m_EditorClassIdentifier: 
+  m_audioDefinitions:
+  - AudioID: GenericShoot
+    AudioClip: {fileID: 8300000, guid: e8bbee1855fa97c46b46b92625acc89b, type: 3}
+  - AudioID: UfoSmallMove
+    AudioClip: {fileID: 8300000, guid: 9d782bb2dd32376418658a1da17645fe, type: 3}
+  - AudioID: UfoBigMove
+    AudioClip: {fileID: 8300000, guid: abf9dba69645cc6498df876f55fdb147, type: 3}
+  - AudioID: GetLife
+    AudioClip: {fileID: 8300000, guid: 97f5f5ab9dc70054380646891ae6682b, type: 3}
+  - AudioID: ExplodeLarge
+    AudioClip: {fileID: 8300000, guid: 805858548b3aceb4ab6090880bd09bf1, type: 3}
+  - AudioID: ExplodeMedium
+    AudioClip: {fileID: 8300000, guid: 62886cd8871504140b75dd7b4f250dcb, type: 3}
+  - AudioID: ExplodeSmall
+    AudioClip: {fileID: 8300000, guid: 2133627b3911cc74db62bff1bb660567, type: 3}
