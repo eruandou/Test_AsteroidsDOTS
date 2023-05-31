@@ -413,4 +413,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec1909806734a799526acd69e0b9e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructionSound: ExplodeMedium
+  destructionSound: ExplodeLarge
+  destructionVolume: 1

@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructionSound: ExplodeSmall
+  destructionVolume: 1
 --- !u!1 &4645480394191320795
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,13 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     //Add points here.
                     l_gameStateData.CurrentPoints +=
                         (int)(p_pointAwardData.PointsToGiveOut * l_gameStateData.PointsMultiplier);
+
+                    if (l_gameStateData.PlayerShouldGetLife)
+                    {
+                        l_gameStateData.CurrentPlayerLives++;
+                        l_gameStateData.LifesObtained++;
+                    }
+
                     l_ecb.DestroyEntity(entityInQueryIndex, p_entity);
                     l_ecb.SetComponent(l_gameStateEntity.Index, l_gameStateEntity, l_gameStateData);
                     l_ecb.AddComponent<DirtyUITag>(l_uiUpdateEntity.Index, l_uiUpdateEntity);
