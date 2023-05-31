@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 16
+  FollowPlayer: 1
+  FollowMinDistance: 40
 --- !u!114 &6080878477123792286
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,13 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Audio;
+using _AsteroidsDOTS.Scripts.DataComponents.Enemies;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.DevelopmentUtilities;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Enemy
@@ -18,6 +20,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         [ReadOnly] public ComponentTypeHandle<CleverUfoTag> CleverUfoTagHandle;
         [ReadOnly] public ComponentTypeHandle<LocalToWorld> LocalToWorldHandle;
         [ReadOnly] public ComponentTypeHandle<ShootSoundData> ShootSoundDataHandle;
+        [ReadOnly] public ComponentTypeHandle<EnemyMovementData> EnemyMovementDataHandle;
+        public ComponentTypeHandle<PhysicsVelocity> EnemyPhysicsVelocity;
         [ReadOnly] public EntityTypeHandle EntityType;
         public float3 PlayerPosition;
         public EntityCommandBuffer Buffer;
@@ -30,14 +34,27 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_enemyLocalToWorldArray = batchInChunk.GetNativeArray(LocalToWorldHandle);
             var l_enemyShootSoundData = batchInChunk.GetNativeArray(ShootSoundDataHandle);
             var l_entities = batchInChunk.GetNativeArray(EntityType);
-
+            var l_movementData = batchInChunk.GetNativeArray(EnemyMovementDataHandle);
+            var l_physicsVelocity = batchInChunk.GetNativeArray(EnemyPhysicsVelocity);
             for (int i = 0; i < batchInChunk.Count; i++)
             {
+                var l_movingData = l_movementData[i];
+                LocalToWorld l_localToWorldData = l_enemyLocalToWorldArray[i];
+                if (l_movingData.FollowPlayer && math.distance(PlayerPosition, l_localToWorldData.Position) <
+                    l_movingData.FollowMinDistance)
+                {
+                    var l_dir = math.normalize(PlayerPosition - l_localToWorldData.Position);
+                    var l_physicsVelocityForEnemy = l_physicsVelocity[i];
+                    l_physicsVelocityForEnemy.Linear = l_dir * l_movingData.MovementSpeed;
+                    //Write data back
+                    l_physicsVelocity[i] = l_physicsVelocityForEnemy;
+                }
+
                 ShootingData l_shootData = l_shootingDataArray[i];
                 if (!l_shootData.ShouldShootProjectile)
                     continue;
                 IndividualRandomData l_randomData = l_randomDataArray[i];
-                LocalToWorld l_localToWorldData = l_enemyLocalToWorldArray[i];
+
 
                 var l_shootingDir = float3.zero;
 
@@ -143,7 +160,9 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                 RandomDataHandle = GetComponentTypeHandle<IndividualRandomData>(false),
                 ShootingDataHandle = GetComponentTypeHandle<ShootingData>(false),
                 ShootSoundDataHandle = GetComponentTypeHandle<ShootSoundData>(true),
-                EntityType = GetEntityTypeHandle()
+                EntityType = GetEntityTypeHandle(),
+                EnemyMovementDataHandle = GetComponentTypeHandle<EnemyMovementData>(true),
+                EnemyPhysicsVelocity = GetComponentTypeHandle<PhysicsVelocity>(false)
             };
 
             Dependency = l_enemyActionJob.Schedule(l_ufoQuery, Dependency);

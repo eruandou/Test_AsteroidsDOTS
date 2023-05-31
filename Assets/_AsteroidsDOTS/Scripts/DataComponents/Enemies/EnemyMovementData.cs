@@ -6,5 +6,7 @@ namespace _AsteroidsDOTS.Scripts.DataComponents.Enemies
     public struct EnemyMovementData: IComponentData
     {
         public float MovementSpeed;
+        public bool FollowPlayer;
+        public float FollowMinDistance;
     }
 }
