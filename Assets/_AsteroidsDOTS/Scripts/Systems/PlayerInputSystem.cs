@@ -1,4 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.Player;
+using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.Globals;
 using Unity.Entities;
 using UnityEngine;
@@ -8,17 +10,26 @@ namespace _AsteroidsDOTS.Scripts.Systems
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class PlayerInputSystem : SystemBase
     {
+        private BeginInitializationEntityCommandBufferSystem m_beginInitializationBuffer;
+
+        protected override void OnCreate()
+        {
+            m_beginInitializationBuffer = World.GetExistingSystem<BeginInitializationEntityCommandBufferSystem>();
+        }
+
         protected override void OnUpdate()
         {
             //Wait for game start to operate system
             if (!AsteroidsDOTS.GameIsStarted)
                 return;
 
-
+            var l_ecb = m_beginInitializationBuffer.CreateCommandBuffer();
             //Query for the player input
             float l_currentTime = (float)Time.ElapsedTime;
 
-            Entities.ForEach((ref PlayerMovementData p_playerMovementData, ref ShootingData p_playerShootingData,
+            Entities.WithNone<HyperSpaceTag>().ForEach((Entity p_playerEntity,
+                ref PlayerMovementData p_playerMovementData, ref ShootingData p_playerShootingData,
+                ref HyperSpaceState p_hyperSpaceState,
                 in InputConfigurationData p_inputConfiguration) =>
             {
                 float l_vertical = 0;
@@ -40,7 +51,13 @@ namespace _AsteroidsDOTS.Scripts.Systems
                     p_playerShootingData.LastShootingTime = l_currentTime;
                     p_playerShootingData.ShouldShootProjectile = true;
                 }
+
+                if (Input.GetKeyDown(p_inputConfiguration.HyperSpaceKey))
+                {
+                    l_ecb.AddComponent<HyperSpaceTag>(p_playerEntity);
+                }
             }).Run();
+            
         }
     }
 }

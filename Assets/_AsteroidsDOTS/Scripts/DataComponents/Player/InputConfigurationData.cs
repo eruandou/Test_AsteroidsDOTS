@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace _AsteroidsDOTS.Scripts.DataComponents
+namespace _AsteroidsDOTS.Scripts.DataComponents.Player
 {
     [GenerateAuthoringComponent]
     public struct InputConfigurationData : IComponentData
@@ -11,5 +11,6 @@ namespace _AsteroidsDOTS.Scripts.DataComponents
         public KeyCode RotateRightKey;
         public KeyCode RotateLeftKey;
         public KeyCode ShootKey;
+        public KeyCode HyperSpaceKey;
     }
 }
