@@ -1,7 +1,9 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.Audio;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.DevelopmentUtilities;
 using _AsteroidsDOTS.Scripts.Globals;
+using _AsteroidsDOTS.Scripts.NonDOTSBehaviour;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -27,8 +29,9 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
 
             var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
             Entities.ForEach(
-                (ref ShootingData p_shootingData, in LocalToWorld p_localToWorld, in Rotation p_rotation,
-                    in ShootingStatsPowerUpData p_shootingStats) =>
+                (Entity p_entity, ref ShootingData p_shootingData, in LocalToWorld p_localToWorld,
+                    in Rotation p_rotation,
+                    in ShootingStatsPowerUpData p_shootingStats, in ShootSoundData p_shootSoundData) =>
                 {
                     if (!p_shootingData.ShouldShootProjectile) return;
 
@@ -58,6 +61,14 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
                     }
 
                     p_shootingData.ShouldShootProjectile = false;
+
+                    var l_audioPetition = new AudioPetition()
+                    {
+                        AudioID = p_shootSoundData.ShotSound,
+                        ShouldLoop = false,
+                        Volume = p_shootSoundData.ShotVolume
+                    };
+                    l_ecb.AddComponent(p_entity, l_audioPetition);
                 }
             ).Schedule();
 

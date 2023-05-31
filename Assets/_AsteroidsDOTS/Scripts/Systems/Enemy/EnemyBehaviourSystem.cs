@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.Audio;
 using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Entities;
@@ -29,14 +30,24 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_gameStateEntity = m_gameStateEntity;
             var l_gameStateData = GetSingleton<GameStateDataUfo>();
             Entities.WithAny<DumbUfoTag, CleverUfoTag>().ForEach((Entity p_entity, ref ShootingData p_enemyShootingData,
-                ref EntityHealthData p_enemyHealth) =>
+                ref EntityHealthData p_enemyHealth, in EnemyMoveSoundData p_soundData, in DestructionSoundData p_destructionSoundData) =>
             {
                 if (p_enemyHealth.ShouldDie)
                 {
                     l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
                     l_gameStateData.SpawnedUfo--;
                     l_ecb.SetComponent(l_gameStateEntity, l_gameStateData);
-
+                    var l_destructionSoundPetition = new AudioPetition()
+                    {
+                        AudioID = p_destructionSoundData.DestructionSound,
+                        Volume = p_destructionSoundData.Volume,
+                        ShouldLoop = false
+                    };
+                    var l_audioStopPetition = new AudioStopPetition()
+                    {
+                        AudioID = p_soundData.EnemyMoveSound
+                    };
+                    l_ecb.AddComponent(p_entity, l_audioStopPetition);
                     if (p_enemyHealth.DeadParticlesPrefab == Entity.Null)
                         return;
 

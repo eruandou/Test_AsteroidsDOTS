@@ -1,5 +1,6 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
 using _AsteroidsDOTS.Scripts.DataComponents.Asteroids;
+using _AsteroidsDOTS.Scripts.DataComponents.Audio;
 using _AsteroidsDOTS.Scripts.DataComponents.GameState;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using Unity.Entities;
@@ -37,7 +38,7 @@ namespace _AsteroidsDOTS.Scripts.Systems
             Entities.WithNone<DeadPointsEntityTag>().ForEach((Entity p_entity, ref IndividualRandomData p_randomData,
                 in EntityHealthData p_asteroidHealth,
                 in AsteroidData p_asteroidData,
-                in LocalToWorld p_localToWorld) =>
+                in LocalToWorld p_localToWorld, in DestructionSoundData p_destructionSoundData) =>
             {
                 if (!p_asteroidHealth.ShouldDie) return;
 
@@ -53,10 +54,17 @@ namespace _AsteroidsDOTS.Scripts.Systems
                         { IntendedDirection = l_randomMovingDirection };
                     l_ecb.AddComponent(l_asteroidEntity, l_uninitializedAsteroidTag);
                 }
-
+                
                 l_currentGameState.TotalSpawnedAsteroids += p_asteroidData.PiecesBrokenIntoOnDestroy - 1;
                 l_ecb.AddComponent<DeadPointsEntityTag>(p_entity);
                 l_ecb.SetComponent(l_gameStateEntity, l_currentGameState);
+                var l_deathSound = new AudioPetition()
+                {
+                    AudioID = p_destructionSoundData.DestructionSound,
+                    Volume = p_destructionSoundData.Volume,
+                    ShouldLoop = false
+                };
+                l_ecb.AddComponent(p_entity, l_deathSound);
             }).Schedule();
 
             m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
