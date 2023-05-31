@@ -38,6 +38,7 @@ namespace _AsteroidsDOTS.Scripts.NonDOTSBehaviour
             }
 
             l_audioSource.clip = l_clipToPlay;
+            l_audioSource.volume = p_desiredVolume;
             l_audioSource.loop = p_isLoop;
             l_audioSource.Play();
         }
