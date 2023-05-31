@@ -660,10 +660,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1265806358058677576, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_Name
-      value: ToMenuButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1265806358058677577, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -688,14 +684,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1265806358413175438, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_text
-      value: TO MENU
-      objectReference: {fileID: 0}
-    - target: {fileID: 1653347247459445271, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_text
-      value: RETRY
-      objectReference: {fileID: 0}
     - target: {fileID: 1653347248044635600, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -719,42 +707,6 @@ PrefabInstance:
     - target: {fileID: 1653347248044635600, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1653347248044635601, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_Name
-      value: RetryButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 1664144055415221829, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_Color.a
-      value: 0.89411765
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817966, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_text
-      value: 'MISSION
-
-        <size=45><#667986>Get rid of every asteroid in sight.
-        Move with WASD and shoot with spacebar. Don''t forget to pickup some powerups.
-        Good luck!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817966, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817967, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1416.7041
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817967, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 200.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817967, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 208.45532
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953074834884817967, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 7482816441864246029, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_AnchorMax.y
@@ -799,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 7482816443177811628, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482816443177811631, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7482816443177811632, guid: 9236fe0cf02ffbc44b17d329ed7d6217, type: 3}
       propertyPath: m_Pivot.x
@@ -1000,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9105972151100958703, guid: 28b2b5f182729a943a9ea20d712bbc83, type: 3}
       propertyPath: m_Name
-      value: SM_Spaceship
+      value: PlayerSpaceship
       objectReference: {fileID: 0}
     - target: {fileID: 9105972151100958703, guid: 28b2b5f182729a943a9ea20d712bbc83, type: 3}
       propertyPath: m_IsActive

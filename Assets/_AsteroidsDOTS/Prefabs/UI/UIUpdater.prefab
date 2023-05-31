@@ -316,7 +316,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -660,6 +660,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7482816443177811632}
     m_Modifications:
+    - target: {fileID: 2550329010344072980, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_text
+      value: 'MISSION
+
+        <size=40><#667986>Get rid of every asteroid in sight.
+        Move with WASD and shoot with spacebar. If you''re ever in trouble, using
+        the F will get your ship outta there. Good luck'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550329010344072980, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550329010344072981, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1416.7041
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550329010344072981, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550329010344072981, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 208.45532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550329010344072981, guid: cc77e834402504908a98793b40512c11, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 2550329011688186546, guid: cc77e834402504908a98793b40512c11, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -871,7 +899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248906715249, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_Name
-      value: PlayButton
+      value: RetryButton
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248954900404, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -879,7 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248954900407, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_text
-      value: PLAY
+      value: RETRY
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248954900407, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_fontSize
@@ -1024,11 +1052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248906715249, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_Name
-      value: ExitButton
+      value: ToMenuButton
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248954900407, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_text
-      value: EXIT
+      value: TO MENU
       objectReference: {fileID: 0}
     - target: {fileID: 7301674248954900407, guid: ba3d5a990f4864f9fbca8ca5b08eb020, type: 3}
       propertyPath: m_fontSize
@@ -1091,6 +1119,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8589462303548390246}
     m_Modifications:
+    - target: {fileID: 7720439049684716680, guid: 4864c6c06d1234b9684fe3a06501f044, type: 3}
+      propertyPath: m_Color.a
+      value: 0.89411765
+      objectReference: {fileID: 0}
     - target: {fileID: 7720439049684716685, guid: 4864c6c06d1234b9684fe3a06501f044, type: 3}
       propertyPath: m_Name
       value: Frame_BannerFrame04_Navy02

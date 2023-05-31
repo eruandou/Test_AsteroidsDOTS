@@ -178,12 +178,12 @@ GameObject:
   - component: {fileID: 1560583586637017503}
   - component: {fileID: 5349212149856591088}
   - component: {fileID: 627978327223668034}
-  - component: {fileID: 2156779949369815777}
   - component: {fileID: 1112786153896918397}
   - component: {fileID: 8048102454698214412}
   - component: {fileID: 1558606597283049204}
-  - component: {fileID: 6803554895598515674}
   - component: {fileID: 3030602013359011185}
+  - component: {fileID: 6993732176884399482}
+  - component: {fileID: 3163595994657384532}
   m_Layer: 0
   m_Name: Player_Spaceship
   m_TagString: Untagged
@@ -479,18 +479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
---- !u!114 &2156779949369815777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105972151100958703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c1a80685d564d4182d26374bd197654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1112786153896918397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +514,7 @@ MonoBehaviour:
   RotateRightKey: 100
   RotateLeftKey: 97
   ShootKey: 32
+  HyperSpaceKey: 102
 --- !u!114 &1558606597283049204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,18 +532,6 @@ MonoBehaviour:
   ProjectileSpawnForwardOffset: 2
   ShouldShootProjectile: 0
   LastShootingTime: 0
---- !u!114 &6803554895598515674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9105972151100958703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cac4e9ab80b4663bdeb45ba5a5ca684, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3030602013359011185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,3 +546,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletsToShoot: 1
   BulletAngleDifference: 50
+--- !u!114 &6993732176884399482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a450bb29264b76b8f68c7b4a7f8589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HyperSpaceTime: 2
+  HyperSpaceFailChance: 15
+--- !u!114 &3163595994657384532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105972151100958703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409c579ed9b54116a6320369c42a5886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
