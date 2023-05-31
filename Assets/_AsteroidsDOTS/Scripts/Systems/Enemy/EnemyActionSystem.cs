@@ -1,4 +1,5 @@
 using _AsteroidsDOTS.Scripts.DataComponents;
+using _AsteroidsDOTS.Scripts.DataComponents.Audio;
 using _AsteroidsDOTS.Scripts.DataComponents.Tags;
 using _AsteroidsDOTS.Scripts.DevelopmentUtilities;
 using Unity.Burst;
@@ -16,6 +17,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         [ReadOnly] public ComponentTypeHandle<DumbUfoTag> DumbUfoTagHandle;
         [ReadOnly] public ComponentTypeHandle<CleverUfoTag> CleverUfoTagHandle;
         [ReadOnly] public ComponentTypeHandle<LocalToWorld> LocalToWorldHandle;
+        [ReadOnly] public ComponentTypeHandle<ShootSoundData> ShootSoundDataHandle;
+        [ReadOnly] public EntityTypeHandle EntityType;
         public float3 PlayerPosition;
         public EntityCommandBuffer Buffer;
 
@@ -25,6 +28,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_shootingDataArray = batchInChunk.GetNativeArray(ShootingDataHandle);
             var l_randomDataArray = batchInChunk.GetNativeArray(RandomDataHandle);
             var l_enemyLocalToWorldArray = batchInChunk.GetNativeArray(LocalToWorldHandle);
+            var l_enemyShootSoundData = batchInChunk.GetNativeArray(ShootSoundDataHandle);
+            var l_entities = batchInChunk.GetNativeArray(EntityType);
 
             for (int i = 0; i < batchInChunk.Count; i++)
             {
@@ -66,6 +71,17 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                 Buffer.AddComponent(l_projectileEntity, l_uninitializedProjectile);
                 l_shootData.ShouldShootProjectile = false;
 
+                var l_playShootSoundData = l_enemyShootSoundData[i];
+                var l_audioPetition = new AudioPetition()
+                {
+                    AudioID = l_playShootSoundData.ShotSound,
+                    Volume = l_playShootSoundData.ShotVolume,
+                    ShouldLoop = false
+                };
+
+                var l_entity = l_entities[i];
+
+                Buffer.AddComponent(l_entity, l_audioPetition);
                 //Write neccesary data back
 
                 l_shootingDataArray[i] = l_shootData;
@@ -125,7 +141,9 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                 LocalToWorldHandle = GetComponentTypeHandle<LocalToWorld>(true),
                 PlayerPosition = l_playerPosition,
                 RandomDataHandle = GetComponentTypeHandle<IndividualRandomData>(false),
-                ShootingDataHandle = GetComponentTypeHandle<ShootingData>(false)
+                ShootingDataHandle = GetComponentTypeHandle<ShootingData>(false),
+                ShootSoundDataHandle = GetComponentTypeHandle<ShootSoundData>(true),
+                EntityType = GetEntityTypeHandle()
             };
 
             Dependency = l_enemyActionJob.Schedule(l_ufoQuery, Dependency);

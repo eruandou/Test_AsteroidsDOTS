@@ -4,6 +4,7 @@ using Unity.Entities;
 
 namespace _AsteroidsDOTS.Scripts.Systems
 {
+    [DisableAutoCreation]
     public class InitializationSystem : SystemBase
     {
         private BeginInitializationEntityCommandBufferSystem m_beginInitializationBuffer;

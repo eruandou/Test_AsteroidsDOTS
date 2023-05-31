@@ -12,6 +12,8 @@ Double shot powerup (R2-A1 "Starburst" Torpedo) - LBruene (Sketchfab).
 Double Points - Jakob Henerey (Sketchfab)
 SuperBomb - lostsoundzz (Sketchfab)
 
+Sounds:
+Original Arcade release of Asteroids, by Atari
 Font:
 
 Arcade -  Yuji Adachi (Dafont)

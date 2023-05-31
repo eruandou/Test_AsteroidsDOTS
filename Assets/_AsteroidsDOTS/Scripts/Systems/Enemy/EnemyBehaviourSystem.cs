@@ -30,7 +30,8 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             var l_gameStateEntity = m_gameStateEntity;
             var l_gameStateData = GetSingleton<GameStateDataUfo>();
             Entities.WithAny<DumbUfoTag, CleverUfoTag>().ForEach((Entity p_entity, ref ShootingData p_enemyShootingData,
-                ref EntityHealthData p_enemyHealth, in EnemyMoveSoundData p_soundData, in DestructionSoundData p_destructionSoundData) =>
+                ref EntityHealthData p_enemyHealth, in EnemyMoveSoundData p_soundData,
+                in DestructionSoundData p_destructionSoundData) =>
             {
                 if (p_enemyHealth.ShouldDie)
                 {
@@ -43,6 +44,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
                         Volume = p_destructionSoundData.Volume,
                         ShouldLoop = false
                     };
+                    l_ecb.AddComponent(p_entity, l_destructionSoundPetition);
                     var l_audioStopPetition = new AudioStopPetition()
                     {
                         AudioID = p_soundData.EnemyMoveSound
