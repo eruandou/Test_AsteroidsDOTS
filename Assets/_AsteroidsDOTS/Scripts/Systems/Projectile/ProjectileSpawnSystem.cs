@@ -13,11 +13,11 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     public class ProjectileSpawnSystem : SystemBase
     {
-        private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
+        private EndInitializationEntityCommandBufferSystem m_endInitializationBuffer;
 
         protected override void OnCreate()
         {
-            m_endSimulationBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+            m_endInitializationBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
         }
 
         protected override void OnUpdate()
@@ -27,7 +27,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
                 return;
             }
 
-            var l_ecb = m_endSimulationBuffer.CreateCommandBuffer();
+            var l_ecb = m_endInitializationBuffer.CreateCommandBuffer();
             Entities.ForEach(
                 (Entity p_entity, ref ShootingData p_shootingData, in LocalToWorld p_localToWorld,
                     in Rotation p_rotation,
@@ -72,7 +72,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Projectile
                 }
             ).Schedule();
 
-            m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
+            m_endInitializationBuffer.AddJobHandleForProducer(Dependency);
         }
     }
 }

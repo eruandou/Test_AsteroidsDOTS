@@ -11,7 +11,7 @@ using Random = Unity.Mathematics.Random;
 
 namespace _AsteroidsDOTS.Scripts.Systems.Powerups
 {
-    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    [UpdateInGroup(typeof(InitializationSystemGroup)),UpdateBefore(typeof(TransformSystemGroup))]
     public class PowerUpSpawnSystem : SystemBase
     {
         private EndInitializationEntityCommandBufferSystem m_endInitializationBuffer;

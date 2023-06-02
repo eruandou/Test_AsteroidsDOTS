@@ -107,16 +107,16 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
         }
     }
 
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(SimulationSystemGroup)), UpdateBefore(typeof(TransformSystemGroup))]
     public class EnemyActionSystem : SystemBase
     {
         private Entity m_playerEntity;
-        private EndSimulationEntityCommandBufferSystem m_endSimulationBuffer;
+        private BeginSimulationEntityCommandBufferSystem m_beginSimulationBuffer;
         private EntityQueryDesc m_ufoQueryDesc;
 
         protected override void OnCreate()
         {
-            m_endSimulationBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+            m_beginSimulationBuffer = World.GetExistingSystem<BeginSimulationEntityCommandBufferSystem>();
             m_ufoQueryDesc = new EntityQueryDesc()
             {
                 All = new[]
@@ -152,7 +152,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
             //Create job and set dependency. Execute job.
             var l_enemyActionJob = new EnemyActionJob()
             {
-                Buffer = m_endSimulationBuffer.CreateCommandBuffer(),
+                Buffer = m_beginSimulationBuffer.CreateCommandBuffer(),
                 CleverUfoTagHandle = GetComponentTypeHandle<CleverUfoTag>(true),
                 DumbUfoTagHandle = GetComponentTypeHandle<DumbUfoTag>(true),
                 LocalToWorldHandle = GetComponentTypeHandle<LocalToWorld>(true),
@@ -167,7 +167,7 @@ namespace _AsteroidsDOTS.Scripts.Systems.Enemy
 
             Dependency = l_enemyActionJob.Schedule(l_ufoQuery, Dependency);
 
-            m_endSimulationBuffer.AddJobHandleForProducer(Dependency);
+            m_beginSimulationBuffer.AddJobHandleForProducer(Dependency);
         }
     }
 }
